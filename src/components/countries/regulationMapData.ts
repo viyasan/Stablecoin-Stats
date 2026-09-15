@@ -577,10 +577,10 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Applies to non-financial-institution issuers (domestic and foreign) making fiat-backed stablecoins available to Canadians — must register with the Bank of Canada; 1:1 reserve backing with qualified Canadian custodians',
       'OSFI crypto-asset capital/liquidity guidelines effective Q1 2026 (Basel Committee standards)',
       'Visa Canada + Wealthsimple launched Canada\'s first stablecoin settlement pilot (USDC) on May 5, 2026',
-      'QCAD live (VersaBank custody Feb 2026; Kraken listing + Deloitte collaboration April 2026; Circle StableFX / Arc testnet May 2026); CADD live May 4, 2026 on Base, Ethereum, and Tempo (Tetra Trust, Alberta TBF, Solana to follow); CADC live since 2021 (Loon)',
+      'QCAD live (TD Bank Group named primary reserve custodian July 2026, joining VersaBank and Tetra Trust; Kraken listing + Deloitte collaboration April 2026; Circle StableFX / Arc testnet May 2026); CADD live May 4, 2026 on Base, Ethereum, and Tempo (Tetra Trust, Alberta TBF, Solana to follow); CADC live since 2021 (Loon), on Solana since June 2026',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-09',
+    lastVerified: '2026-09-14',
     regulatorName: 'Bank of Canada, Canadian Securities Administrators (CSA) & Office of the Superintendent of Financial Institutions (OSFI)',
     sources: [
       {
@@ -652,9 +652,9 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Stablecoins with market cap below threshold (TBD in regulations)',
     ],
     stablecoinIssuers: [
-      { company: 'Stablecorp', stablecoin: 'QCAD', status: 'Live; VersaBank custody (Feb 2026); Kraken listing + Deloitte collaboration (April 2026); Circle StableFX / Arc testnet (May 2026)' },
+      { company: 'Stablecorp', stablecoin: 'QCAD', status: 'Live; TD Bank Group primary reserve custodian (July 2026), with VersaBank and Tetra Trust; Kraken listing + Deloitte collaboration (April 2026); Circle StableFX / Arc testnet (May 2026)' },
       { company: 'Tetra Digital Group', stablecoin: 'CADD', status: 'Live (May 4, 2026) on Base, Ethereum, and Tempo (Solana to follow); backed by Tetra Trust + National Bank of Canada + Shopify + Wealthsimple + Shakepay + ATB Financial + Purpose Unlimited + Urbana Corporation; first regulated CAD stablecoin from a financial institution (Alberta TBF approval)' },
-      { company: 'Loon', stablecoin: 'CADC', status: 'Live (2021, acquired by Loon October 2025); first Canadian stablecoin in a live remittance corridor (Canada→Mexico & Nigeria, May 2026)' },
+      { company: 'Loon', stablecoin: 'CADC', status: 'Live (2021, acquired by Loon October 2025); first Canadian stablecoin in a live remittance corridor (Canada→Mexico & Nigeria, May 2026); launched on Solana June 2026' },
     ],
   },
   {
