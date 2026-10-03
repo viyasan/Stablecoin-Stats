@@ -30,11 +30,11 @@ describe('App routing', () => {
     });
   });
 
-  it('redirects the Countries index to Canada until an index page exists', async () => {
+  it('serves the Countries index listing every country', async () => {
     renderAt('/countries');
 
     await waitFor(() => {
-      expect(window.location.pathname).toBe('/countries/canada');
+      expect(window.location.pathname).toBe('/countries');
     });
   });
 

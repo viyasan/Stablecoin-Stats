@@ -7,6 +7,7 @@ import {
   OverviewPage,
   MarketPage,
   CountryMarketPage,
+  CountriesIndexPage,
   CountriesPage,
   CountryDetailPage,
   NewsPage,
@@ -76,7 +77,7 @@ function App() {
 
           {/* Countries section — issuer and market deep-dives, one page per country.
               A slug with no dataset forwards to its regulation page; see CountryMarketPage. */}
-          <Route path="/countries" element={<Navigate to="/countries/canada" replace />} />
+          <Route path="/countries" element={<CountriesIndexPage />} />
           <Route path="/countries/:slug" element={<CountryMarketPage />} />
 
           {/* Legacy */}
