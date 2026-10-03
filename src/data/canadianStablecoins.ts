@@ -532,12 +532,12 @@ export const canadianStablecoins: CanadianStablecoin[] = [
     reserveMetadata: {
       reserveRatio: "100% (1:1)",
       custodian: "TD Bank Group (primary)",
-      lastAttested: "Jun 2026",
+      lastAttested: "Oct 2026",
       attestationFrequency: "Daily + Monthly (SEDAR+)",
       attestationUrl: "https://stablecorp.ca/transparency",
       chainLabel: "Ethereum",
-      attestedSupply: 1_773_050,
-      attestedSupplySource: "Stablecorp proof-of-reserves, Sept 14, 2026",
+      attestedSupply: 2_124_672,
+      attestedSupplySource: "Stablecorp proof-of-reserves, Oct 3, 2026",
     },
   },
   {
@@ -703,12 +703,12 @@ export const canadianStablecoins: CanadianStablecoin[] = [
     reserveMetadata: {
       reserveRatio: "100% (1:1)",
       custodian: "Tetra Trust",
-      lastAttested: "Jul 2026",
+      lastAttested: "Aug 2026",
       attestationFrequency: "Daily reserve report + monthly attestation (Baker Tilly)",
       attestationUrl: "https://tetradg.com/cadd-reserve-attestations/",
       chainLabel: "Multi-chain",
-      attestedSupply: 1_276_473,
-      attestedSupplySource: "Daily Reserve Ratio Report (CAD Digital), Sept 14, 2026",
+      attestedSupply: 1_319_658,
+      attestedSupplySource: "Daily Reserve Ratio Report (CAD Digital), Oct 2, 2026",
     },
   },
 ];
