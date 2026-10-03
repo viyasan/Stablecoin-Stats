@@ -81,10 +81,9 @@ describe('useStablecoinReserves', () => {
       expect(result.current.isLoading).toBe(false);
     });
 
-    // USDT should have $135B treasury holdings
-    expect(result.current.data?.usdt.treasuryHoldings).toBe(135_000_000_000);
-    // USDC should have $62B treasury holdings
-    expect(result.current.data?.usdc.treasuryHoldings).toBe(62_000_000_000);
+    // Static attestation figures from RESERVE_DATA
+    expect(result.current.data?.usdt.treasuryHoldings).toBe(141_000_000_000);
+    expect(result.current.data?.usdc.treasuryHoldings).toBe(62_470_000_000);
   });
 });
 
@@ -107,6 +106,7 @@ describe('useMarketSummary', () => {
     ];
 
     mockFetch
+      .mockResolvedValueOnce({ ok: false }) // cached /api/market-summary unavailable -> DefiLlama fallback
       .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockStablecoins) })
       .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockCharts) });
 
@@ -132,6 +132,7 @@ describe('useMarketSummary', () => {
     ];
 
     mockFetch
+      .mockResolvedValueOnce({ ok: false }) // cached /api/market-summary unavailable -> DefiLlama fallback
       .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockStablecoins) })
       .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockCharts) });
 

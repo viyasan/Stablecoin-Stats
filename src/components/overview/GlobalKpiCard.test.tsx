@@ -35,6 +35,17 @@ const renderComponent = () => {
 describe('GlobalKpiCard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Prefer reduced motion so useCountUp renders final values immediately
+    vi.spyOn(window, 'matchMedia').mockImplementation((query: string) => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }));
     mockUseStablecoinList.mockReturnValue({ data: null });
     mockUseMarketCapChart.mockReturnValue({ data: [] });
   });
@@ -50,7 +61,7 @@ describe('GlobalKpiCard', () => {
     const { container } = renderComponent();
 
     // Should show skeleton loader
-    const skeletons = container.querySelectorAll('.animate-pulse');
+    const skeletons = container.querySelectorAll('.animate-skeleton-shimmer');
     expect(skeletons.length).toBeGreaterThan(0);
   });
 

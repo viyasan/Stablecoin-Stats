@@ -16,7 +16,7 @@ describe('Skeleton', () => {
     const { container } = render(<Skeleton />);
 
     const skeleton = container.firstChild as HTMLElement;
-    expect(skeleton).toHaveClass('bg-chrome-200', 'animate-pulse', 'rounded-md');
+    expect(skeleton).toHaveClass('animate-skeleton-shimmer', 'rounded-md');
   });
 
   it('applies custom className', () => {
@@ -82,7 +82,7 @@ describe('SkeletonKpiCard', () => {
 
     expect(container.firstChild).toBeInTheDocument();
     // Should have multiple skeleton elements for the KPI structure
-    const skeletons = container.querySelectorAll('.animate-pulse');
+    const skeletons = container.querySelectorAll('.animate-skeleton-shimmer');
     expect(skeletons.length).toBeGreaterThan(5);
   });
 
@@ -113,7 +113,7 @@ describe('SkeletonChart', () => {
     const { container } = render(<SkeletonChart />);
 
     // Should have 12 bar placeholders
-    const bars = container.querySelectorAll('.flex-1.bg-chrome-200');
+    const bars = container.querySelectorAll('.flex-1.animate-skeleton-shimmer');
     expect(bars).toHaveLength(12);
   });
 });

@@ -15,8 +15,7 @@ describe('Header', () => {
   it('renders the logo', () => {
     renderHeader();
 
-    expect(screen.getByText('StablecoinStats.xyz')).toBeInTheDocument();
-    expect(screen.getByText('S')).toBeInTheDocument();
+    expect(screen.getByAltText('StablecoinStats logo')).toHaveAttribute('src', '/logo.png');
   });
 
   it('renders navigation links', () => {
@@ -24,14 +23,14 @@ describe('Header', () => {
 
     expect(screen.getByRole('link', { name: /overview/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /canada/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /regulatory landscape/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /^regulation$/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /news/i })).toBeInTheDocument();
   });
 
   it('logo links to home page', () => {
     renderHeader();
 
-    const logoLink = screen.getByRole('link', { name: /stablecoinstats\.xyz/i });
+    const logoLink = screen.getByRole('link', { name: /stablecoinstats logo/i });
     expect(logoLink).toHaveAttribute('href', '/');
   });
 
@@ -52,7 +51,7 @@ describe('Header', () => {
   it('countries link has correct href', () => {
     renderHeader();
 
-    const countriesLink = screen.getByRole('link', { name: /regulatory landscape/i });
+    const countriesLink = screen.getByRole('link', { name: /^regulation$/i });
     expect(countriesLink).toHaveAttribute('href', '/countries');
   });
 
@@ -114,6 +113,7 @@ describe('Header', () => {
     // The Canada link should have active styling when on /canada route
     const canadaLinks = screen.getAllByRole('link', { name: /canada/i });
     const desktopCanadaLink = canadaLinks[0];
-    expect(desktopCanadaLink).toHaveClass('bg-gold-50', 'text-gold-600');
+    expect(desktopCanadaLink).toHaveClass('text-gold-600');
+    expect(screen.getAllByRole('link', { name: /news/i })[0]).toHaveClass('text-chrome-500');
   });
 });

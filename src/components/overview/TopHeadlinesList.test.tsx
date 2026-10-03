@@ -56,7 +56,7 @@ describe('TopHeadlinesList', () => {
 
     const { container } = renderComponent();
 
-    const skeletons = container.querySelectorAll('.animate-pulse');
+    const skeletons = container.querySelectorAll('.animate-skeleton-shimmer');
     expect(skeletons.length).toBeGreaterThan(0);
   });
 
