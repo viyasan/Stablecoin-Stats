@@ -68,10 +68,15 @@ Hooks live in `src/api/` and are re-exported from `src/api/index.ts`.
 
 | Source | File | Type |
 |--------|------|------|
-| DefiLlama API | `src/api/marketApi.ts` | Live — market caps, charts, chain breakdown, stablecoin list |
-| US Treasury TIC Data | `TreasuryHoldingsCard.tsx` | Static — Jan 2026 foreign holder rankings |
-| Tether/Circle Attestations | `marketApi.ts` RESERVE_DATA | Static — treasury holdings ($141B/$46B) |
-| Transaction KPIs | `TransactionKpiCard.tsx` | Static — Visa/Allium sourced metrics |
+| DefiLlama API | `src/api/marketApi.ts`, `yieldApi.ts`, `useCanadianReserves.ts` | Live — market caps, charts, chain breakdown, stablecoin list, yields, CADC supply |
+| Supabase cache | `api/market-summary.ts`, `api/cron/refresh.ts` | Live — daily Vercel cron snapshot of DefiLlama; `marketApi.ts` falls back to DefiLlama directly |
+| Ethereum RPC | `src/api/useCanadianReserves.ts` | Live — QCAD on-chain supply |
+| News RSS | `src/api/newsApi.ts` | Live — CoinDesk / CoinTelegraph feeds |
+| US Treasury TIC Data | `TreasuryHoldingsCard.tsx` | Static — July 2026 foreign holder rankings (top 8 + Tether #18, Circle ~#28) |
+| Tether/Circle Attestations | `marketApi.ts` RESERVE_DATA, `TreasuryHoldingsCard.tsx` | Static — Treasury holdings: Tether $141B (Q1 2026 BDO), Circle $62.47B (Circle Reserve Fund, Sept 30, 2026) |
+| Canadian stablecoins | `src/data/canadianStablecoins.ts` | Static — issuer profiles, timelines, attested supply (Oct 2026) |
+| Global regulation | `src/components/countries/regulationMapData.ts` | Static — 10 jurisdictions, `lastVerified` per entry (Oct 2026) |
+| Quick Insights / Insights | `QuickInsightsCarousel.tsx`, `news/InsightsSection.tsx` | Static — homepage insights (Oct 2026), curated reports (Feb 2026) |
 
 Static data needs manual updates. Sources and dates are documented in comments and card attribution links.
 
