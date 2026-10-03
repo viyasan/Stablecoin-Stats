@@ -976,6 +976,55 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       { company: 'Circle', stablecoin: 'USDC', status: 'Available in Australia' },
     ],
   },
+  {
+    id: 'mx',
+    name: 'Mexico',
+    isoCodes: ['MX'],
+    stage: 'proposed',
+    summary: 'Mexico regulates crypto through the 2018 Fintech Law (Ley para Regular las Instituciones de Tecnología Financiera), most recently reformed in November 2025. Virtual assets are legal to hold and trade through authorized institutions, but banks remain largely walled off from them, and the law has never addressed stablecoins directly.\n\nThat gap is the subject of the Murat Initiative, introduced in the Senate in May 2026, which would create a dedicated category of "Activos Virtuales Estables" (AVE) — stable virtual assets with 1:1 peso parity and guaranteed immediate convertibility. Issuance would be restricted to Electronic Payment Funds Institutions (IFPE) and licensed credit institutions holding prior authorization from Banco de México, with unauthorized issuance carrying 5 to 15 years imprisonment. Supervision would be split four ways: Banxico over authorization, reserves and convertibility; CNBV over operations, technology and cybersecurity; Hacienda over AML; and Condusef over consumer protection. Entry into force is expected between May 2026 and January 2027 depending on secondary provisions.\n\nIn the meantime the market runs on the existing IFPE licence. MXNB, the leading peso stablecoin, is issued by Juno — a Bitso subsidiary authorized as an IFPE — which places its redemption path inside a CNBV-supervised entity today.',
+    keyPoints: [
+      'Murat Initiative introduced in the Senate May 2026 — would define "Activos Virtuales Estables" (AVE) with 1:1 peso parity and guaranteed immediate convertibility',
+      'Issuance would be restricted to Electronic Payment Funds Institutions (IFPE) and licensed banks with prior Banco de México authorization',
+      'Unauthorized issuance would be criminalized, carrying 5 to 15 years imprisonment',
+      'Split supervision: Banxico (authorization, reserves, convertibility), CNBV (operations, technology, cybersecurity), Hacienda (AML), Condusef (consumer protection)',
+      'Entry into force expected between May 2026 and January 2027, depending on secondary provisions',
+      'Fintech Law (2018, reformed November 2025) remains the operative framework; a 2026 CNBV agreement simplified eight fintech procedures while supervision of NFTs, DeFi and stablecoins is still under discussion',
+      'MXNB (Juno, a Bitso subsidiary) operates under an existing IFPE licence, putting redemption inside a CNBV-supervised entity',
+      'Banks remain largely restricted from holding or dealing in virtual assets',
+      'Context: the US-Mexico remittance corridor is worth roughly $61.8B a year and runs predominantly on dollar stablecoins',
+    ],
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
+    regulatorName: 'Banco de México (Banxico), CNBV, SHCP & Condusef',
+    sources: [
+      {
+        name: 'Ley Fintech - Mexican Fintech Law',
+        url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf',
+        date: '2018-03-09',
+        type: 'legislation',
+      },
+      {
+        name: 'Banco de México - Financial System Reports',
+        url: 'https://www.banxico.org.mx/',
+        type: 'regulator',
+      },
+      {
+        name: 'CNBV - Comisión Nacional Bancaria y de Valores',
+        url: 'https://www.gob.mx/cnbv',
+        type: 'regulator',
+      },
+    ],
+    regulatoryBodies: [
+      { name: 'Banco de México (Banxico)', role: 'Would authorize AVE issuers and oversee reserves and convertibility' },
+      { name: 'CNBV', role: 'Supervises IFPEs today; would oversee AVE operations, technology and cybersecurity' },
+      { name: 'SHCP (Hacienda)', role: 'Anti-money-laundering supervision' },
+      { name: 'Condusef', role: 'Consumer protection for financial services users' },
+    ],
+    reserveRequirements: [
+      { requirement: '1:1 Peso Parity', details: 'AVE would require 1:1 backing in pesos with immediate convertibility guaranteed, under Banco de México supervision' },
+      { requirement: 'Authorized Issuers Only', details: 'Restricted to IFPEs and licensed credit institutions with prior Banxico authorization' },
+    ],
+  },
 ];
 
 // All ISO codes that should be highlighted (not grayed out)

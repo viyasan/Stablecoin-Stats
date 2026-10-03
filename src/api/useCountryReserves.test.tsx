@@ -61,6 +61,35 @@ describe('useCountryReserves', () => {
     expect(result.current.data?.qcad?.[0].amount).toBeGreaterThan(0);
   });
 
+  it('reads an ERC-20 asset across every chain it is deployed on', async () => {
+    // MXNB is not indexed by DefiLlama and runs the same contract on four EVM chains.
+    const supplies = ['0x24aa4e4dbdc', '0x1198b1c6c3f', '0x3c4b3e6f25', '0x166b1f9ba7'];
+    let call = 0;
+    const fetchMock = vi.fn(async (url: string) => {
+      if (typeof url === 'string' && url.includes('llama')) {
+        return new Response(JSON.stringify(llamaResponse), { status: 200 });
+      }
+      const result = supplies[call % supplies.length];
+      call += 1;
+      return new Response(JSON.stringify({ jsonrpc: '2.0', id: 1, result }), { status: 200 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const { result } = renderHook(() => useCountryReserves('mexico'));
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    const mxnb = result.current.data?.mxnb;
+    expect(mxnb).toHaveLength(4);
+    expect(mxnb?.map((c) => c.chain).sort()).toEqual([
+      'Arbitrum',
+      'Avalanche',
+      'Base',
+      'Ethereum',
+    ]);
+    // Sorted descending, and scaled by the configured 6 decimals
+    expect(mxnb?.[0].amount).toBeGreaterThan(mxnb![3].amount);
+  });
+
   it('yields null for an asset whose fetch fails without losing the others', async () => {
     const fetchMock = vi.fn(async (url: string) => {
       if (typeof url === 'string' && url.includes('llama')) {
