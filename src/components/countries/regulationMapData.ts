@@ -63,10 +63,11 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
     name: 'United States',
     isoCodes: ['US'],
     stage: 'implemented',
-    summary: 'The United States enacted the GENIUS Act (Guiding and Establishing National Innovation for US Stablecoins Act) on July 18, 2025, establishing the first comprehensive federal regulatory framework for payment stablecoins. The legislation passed with strong bipartisan support (68-30 in the Senate, 308-122 in the House).\n\nThe GENIUS Act clarifies that payment stablecoins are neither securities nor commodities, removing SEC and CFTC oversight. Instead, bank issuers are regulated by their primary federal banking regulator, while nonbank issuers are overseen by the OCC. Issuers must maintain 100% reserve backing with highly liquid assets, publish monthly reserve compositions, and honor redemptions at par within one day. Federal agencies missed the July 18, 2026 statutory deadline to finalize implementing regulations — no coordinated final rule set was issued, and finalization is now expected in staggered releases later in 2026. Full compliance is required by January 18, 2027 (or 120 days after final regulations issue). Existing issuers have until July 18, 2028 to comply.',
+    summary: 'The United States enacted the GENIUS Act (Guiding and Establishing National Innovation for US Stablecoins Act) on July 18, 2025, establishing the first comprehensive federal regulatory framework for payment stablecoins. The legislation passed with strong bipartisan support (68-30 in the Senate, 308-122 in the House).\n\nThe GENIUS Act clarifies that payment stablecoins are neither securities nor commodities, removing SEC and CFTC oversight. Instead, bank issuers are regulated by their primary federal banking regulator, while nonbank issuers are overseen by the OCC. Issuers must maintain 100% reserve backing with highly liquid assets, publish monthly reserve compositions, and honor redemptions at par within one day. Federal agencies missed the July 18, 2026 statutory deadline to finalize implementing regulations. Treasury issued the first binding rule, an interim final rule on certifying state regimes, on September 30, 2026, and the OCC is targeting its final implementing rule for November 2026. Full compliance is required by January 18, 2027 (or 120 days after final regulations issue). Existing issuers have until July 18, 2028 to comply.',
     keyPoints: [
       'GENIUS Act signed into law July 18, 2025; effective January 18, 2027 (or 120 days after final rules issued)',
-      'Agencies MISSED the July 18, 2026 statutory deadline — no coordinated set of final rules issued; finalization now expected in staggered/coordinated releases later in 2026 (Q3+)',
+      'Agencies MISSED the July 18, 2026 statutory deadline; Treasury issued the first binding rule Sept 30, 2026 (interim final rule on state "substantially similar" certification — issuers with ≤$10B outstanding may opt for state oversight); OCC targeting its final rule for November 2026',
+      'Federal Reserve published its GENIUS Act implementing proposals (Sept 29, 2026): reserves, capital, risk management and safekeeping standards for Board-supervised issuers',
       'Post-deadline rulemaking continues: OCC 39-page NPRM (June 22, 2026); five-agency Customer Identification Program NPRM (comment deadline Aug 21, 2026); FDIC BSA/sanctions proposal (comment deadline Aug 4, 2026)',
       'OCC NPRM published Feb 25, 2026: $5M capital floor, 12-month operational backstop, 2-day redemption window (comment deadline May 1, 2026)',
       'Treasury NPRM (April 1, 2026): "substantially similar" standard for state regimes; comment deadline June 2, 2026',
@@ -77,8 +78,8 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Payment stablecoins explicitly excluded from SEC and CFTC securities/commodities jurisdiction',
       'CBDC development effectively halted via Executive Order and Congressional opposition',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Office of the Comptroller of the Currency (OCC), Federal Reserve, FDIC & State Regulators',
     sources: [
       {
@@ -146,6 +147,12 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
         date: '2026-04-08',
         type: 'guidance',
       },
+      {
+        name: 'Federal Register - Federal Reserve GENIUS Act Implementing Proposals',
+        url: 'https://www.federalregister.gov/documents/2026/09/29/2026-19860/implementing-the-federal-reserve-boards-responsibilities-under-the-genius-act',
+        date: '2026-09-29',
+        type: 'guidance',
+      },
     ],
     regulatoryBodies: [
       { name: 'Office of the Comptroller of the Currency (OCC)', role: 'Primary regulator for federally licensed nonbank stablecoin issuers' },
@@ -170,6 +177,15 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
           'FDIC proposed rule (April 7): requirements for FDIC-supervised PPSIs; 2-business-day redemption; reserves not FDIC-insured',
           'FinCEN/OFAC proposed rule (April 8): PPSIs as financial institutions under BSA; AML program, SAR filing, Travel Rule compliance',
           'Agencies missed the July 18, 2026 statutory deadline; no coordinated final rules issued. Post-deadline NPRMs continue (OCC June 22; five-agency CIP, comment deadline Aug 21; FDIC BSA/sanctions, comment deadline Aug 4)',
+        ],
+      },
+      {
+        title: 'GENIUS Act Implementation — Fall 2026',
+        points: [
+          'Federal Reserve implementing proposals published Sept 29, 2026: reserves, capital, risk management and custody for Board-supervised PPSIs',
+          'Treasury interim final rule (Sept 30, 2026): first binding GENIUS Act regulation; sets the Stablecoin Certification Review Committee process for judging state regimes "substantially similar"',
+          'Issuers with ≤$10B outstanding may opt for state oversight; Tether and Circle are well above the line',
+          'OCC targeting its final implementing rule for November 2026',
         ],
       },
     ],
@@ -231,11 +247,13 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Circle USDC/EURC first major global stablecoin to achieve full MiCA compliance',
       '17 authorized EMT issuers as of January 2026 (14 EUR, 9 USD, 1 CZK, 1 GBP tokens); 102 CASPs operating in EU',
       'ECB Opinion CON/2026/13 (April 10, 2026): proposes hard cap on EMTs as settlement assets; seeks role in CASP supervision',
+      'MiCA review: EBA (Sept 24, 2026) and ESMA (Sept 30, 2026) published recommendations — ESMA asks to bar licensed firms from servicing non-compliant stablecoins and to create a regulated DeFi-access category; EBA seeks tighter stablecoin oversight',
+      '39 EMTs issued under MiCA as of Sept 1, 2026; no ARTs authorized',
       'Nine-bank euro stablecoin consortium formed in Netherlands; first issuance expected H2 2026 under DNB supervision',
       'CARF/DAC8 tax reporting became effective January 1, 2026 for crypto transactions',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'European Banking Authority (EBA) & National Competent Authorities (NCAs)',
     sources: [
       {
@@ -326,16 +344,16 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
     stage: 'approved',
     summary: 'The United Kingdom is developing a comprehensive regulatory framework for stablecoins through the Financial Services and Markets Act (FSMA) 2023. HM Treasury laid the Financial Services and Markets Act 2000 (Cryptoassets) Regulations 2026 (SI 2026/102) before Parliament on December 15, 2025, creating six new regulated activities including stablecoin issuance and cryptoasset custody.\n\nThe FCA published Consultation Paper CP25/14 in May 2025 and, on June 30, 2026, published its final rules — five Policy Statements (PS26/9–PS26/13), including PS26/10 on stablecoin issuance, redemption, backing assets, safeguarding and disclosures for "qualifying stablecoins" referencing a single fiat currency. The Bank of England published its consultation on systemic stablecoin regulation in November 2025 (closing February 10, 2026), establishing a dual-regulator model. The comprehensive regime comes into force October 25, 2027, with application windows opening September 30, 2026. The FCA launched a Stablecoins Regulatory Sandbox cohort (applications closed January 18, 2026) to enable testing and policy development.',
     keyPoints: [
-      'Full regime comes into force October 25, 2027; application window opens September 30, 2026',
+      'Full regime comes into force October 25, 2027; FCA authorisation gateway opened September 30, 2026 (application window runs to February 28, 2027)',
       'FCA published FINAL rules June 30, 2026 — five Policy Statements (PS26/9 admissions/disclosures/market abuse, PS26/10 stablecoin issuance, PS26/11 regulated activities, PS26/12 prudential, PS26/13 Handbook application); UK-issued qualifying stablecoins must be fully backed from point of minting',
-      'BoE systemic stablecoin consultation closed Feb 10, 2026; reviewing responses; Codes of Practice to follow',
+      'BoE finalised systemic stablecoin policy June 22, 2026: per-holder limits (£20K individual / £10M business) dropped for a temporary £40B issuance cap per systemic stablecoin; draft Code of Practice consultation closed Sept 22, 2026, final Code expected by end-2026',
       'Additional FCA consultations published Dec 2025: CP25/40 (cryptoasset activities), CP25/41 (disclosures/market abuse), CP25/42 (prudential regime)',
       'Dual regulation: BoE (systemic/prudential) and FCA (conduct/consumer protection)',
-      'Reserve requirements: 40% BoE deposits, 60% UK government debt (standard); 95% debt allowed initially',
+      'Systemic issuer backing: at least 30% unremunerated BoE deposits, up to 70% short-term UK government debt; up to 95% debt allowed for issuers systemic at launch',
       'FCA selected 4 sandbox firms (Monee, ReStabilise, Revolut, VVTX) from 20 applicants; testing Q1 2026',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Financial Conduct Authority (FCA) & Bank of England',
     sources: [
       {
@@ -386,7 +404,7 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
     ],
     reserveRequirements: [
       { requirement: '100% Backing', details: 'Stablecoins must be fully backed by secure, liquid assets at all times' },
-      { requirement: 'Systemic Issuer Composition', details: '40% unremunerated Bank of England deposits, 60% short-term UK government debt' },
+      { requirement: 'Systemic Issuer Composition', details: 'At least 30% unremunerated Bank of England deposits, up to 70% UK government debt (≤6 months); up to 95% debt during step-up for issuers systemic at launch' },
       { requirement: 'Statutory Trust', details: 'Backing assets held in statutory trust for stablecoin holders' },
       { requirement: 'Independent Custody', details: 'Assets held with third-party custodian independent of issuer group' },
       { requirement: 'Segregation', details: 'Issuers must segregate backing assets for each stablecoin product' },
@@ -397,10 +415,9 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Hold backing assets in statutory trust with independent custodian',
       'Cannot pay interest to stablecoin holders (mirrors potential digital pound)',
       'Transition to Bank of England supervision if recognized as systemic by HM Treasury',
-      'Subject to holding limits: £20,000 per individual, £10M per business',
+      'Systemic stablecoins subject to a temporary £40B aggregate issuance cap per product (per-holder limits dropped June 2026)',
     ],
     exemptions: [
-      'Retail businesses and intermediaries may be exempted from £10M business limits',
       'Non-systemic stablecoins regulated by FCA only (not Bank of England)',
     ],
     cbdcStatus: [
@@ -422,9 +439,9 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
     name: 'Singapore',
     isoCodes: ['SG'],
     stage: 'implemented',
-    summary: 'The Monetary Authority of Singapore (MAS) finalized its Single-Currency Stablecoin (SCS) regulatory framework on August 15, 2023, with full implementation expected by mid-2026 through forthcoming legislation. The framework applies to stablecoins pegged to the Singapore Dollar or any G10 currency (USD, EUR, JPY, GBP, AUD, NZD, CAD, CHF, NOK, SEK), issued from Singapore.\n\nTo obtain the "MAS-regulated" label, issuers must maintain 100% reserves in the peg currency, publish monthly independent attestations, undergo annual audits, and redeem at par within five business days. MAS requires stablecoins to be issued solely from Singapore (no multi-jurisdictional issuance initially). In November 2025, MAS announced Project BLOOM (Borderless, Liquid, Open, Online, Multi-currency) to extend settlement capabilities using tokenized assets and well-regulated stablecoins, with Q2 2026 cross-border QR payment trials between Thailand and Singapore. MAS will also trial tokenized MAS bills settlement using wholesale CBDC in 2026.',
+    summary: 'The Monetary Authority of Singapore (MAS) finalized its Single-Currency Stablecoin (SCS) regulatory framework on August 15, 2023, and on September 1, 2026 began consulting on Payment Services Act amendments to give it legal effect. The framework applies to stablecoins pegged to the Singapore Dollar or any G10 currency (USD, EUR, JPY, GBP, AUD, NZD, CAD, CHF, NOK, SEK), issued from Singapore.\n\nTo obtain the "MAS-regulated" label, issuers must maintain 100% reserves in the peg currency, publish monthly independent attestations, undergo annual audits, and redeem at par within five business days. MAS requires stablecoins to be issued solely from Singapore (no multi-jurisdictional issuance initially). In November 2025, MAS announced Project BLOOM (Borderless, Liquid, Open, Online, Multi-currency) to extend settlement capabilities using tokenized assets and well-regulated stablecoins, with Q2 2026 cross-border QR payment trials between Thailand and Singapore. MAS will also trial tokenized MAS bills settlement using wholesale CBDC in 2026.',
     keyPoints: [
-      'MAS framework finalized August 15, 2023; legislation in development for mid-2026 implementation',
+      'MAS framework finalized August 15, 2023; Sept 1, 2026 consultation proposes Payment Services Act amendments to give it legal effect — dedicated stablecoin issuance licence, interest ban, multi-jurisdiction issuance and recognition of select foreign stablecoins (closes Oct 16, 2026)',
       'Project BLOOM launched October 2025 for multi-currency tokenized settlement (domestic & cross-border)',
       'MAS to trial tokenized bills with wholesale CBDC settlement in 2026',
       'StraitsX XSGD acknowledged as substantially compliant with SCS framework',
@@ -433,8 +450,8 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Project BLOOM Thailand–Singapore cross-border QR corridor going live Q2 2026 (KBank Q Wallet); further corridors planned for Indonesia, Japan, Taiwan, and Hong Kong',
       'BLOOM participants include DBS, J.P. Morgan, Standard Chartered, UOB, Circle, Temasek, and StraitsX; Ripple joined BLOOM (2026) to advance programmable trade-finance settlement; XSGD card volumes up ~40× YoY, issuance up ~83×',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Monetary Authority of Singapore (MAS)',
     sources: [
       {
@@ -506,12 +523,13 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'MUFG, Mizuho, and SMBC signed an MOU June 10, 2026 to issue a joint yen stablecoin, targeting live corporate transactions by March 2027 (builds on Nov 2025 FSA pilot)',
       'JPYC became Japan\'s first fully FSA-licensed yen stablecoin (live since October 2025; Ethereum, Avalanche, Polygon); MUFG distribution partnership',
       'JPYSC (SBI/Startale trust-bank-backed JV) live; SBI launched JPYSC stablecoin lending with ~3% yield (July 2026); Japan Blockchain Foundation announced EJPY (May 2026) on Japan Open Chain and Ethereum',
+      'FSA trade-finance stablecoin pilot running from September 2026 (MUFG, SMBC, Mizuho, Mitsubishi UFJ Trust, NTT Data, TradeWaltz); trust-backed yen stablecoin targeted for live commercial use by March 2027',
       'Retail adoption expanding: Lawson (Japan\'s #3 convenience-store chain) began trialing JPYC payments in-store (July 2026)',
       'Only banks, money-transfer agents, and trust companies can issue stablecoins; classified as Electronic Payment Instruments (EPI), not securities',
       'Bank-issued stablecoins protected by deposit insurance up to JPY 10 million',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Financial Services Agency (FSA)',
     sources: [
       {
@@ -671,11 +689,11 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'AE Coin fully licensed; approved for federal government payments across all ministries (Feb 2026)',
       'RAKBank in-principle approval for AED stablecoin (Jan 2026); no launch date announced',
       'Tether announced an AED-pegged stablecoin with Phoenix Group and Green Acorn Investments',
-      'Federal Decree Law No. 6 of 2025 brings all crypto under CBUAE with AED 1B penalties',
+      'Federal Decree Law No. 6 of 2025 brings all crypto under CBUAE with AED 1B penalties; its transition window closed September 2026, pulling DeFi protocols, DEXs and Web3 platforms into the perimeter',
       '100% backing required with daily attestations; AED 10M minimum capital for VARA',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Central Bank of UAE (CBUAE), Virtual Assets Regulatory Authority (VARA) & ADGM FSRA',
     sources: [
       {
@@ -737,14 +755,14 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
     keyPoints: [
       'Stablecoins Ordinance effective August 1, 2025; first licenses granted April 10, 2026',
       'HKMA granted first licenses to Anchorpoint Financial and HSBC (April 10, 2026)',
-      'Anchorpoint (Standard Chartered / HKT / Animoca JV) rolling out its HKDAP stablecoin in phases from H2 2026; HSBC targeting an HKD-denominated stablecoin in H2 2026',
+      'Anchorpoint (Standard Chartered / HKT / Animoca JV) opened an HKDAP beta for institutional distributors and professional investors in August 2026, with phased rollout through H2 2026; HSBC targeting an HKD-denominated stablecoin in H2 2026',
       'HKMA received 77 expressions of interest, 36 formal applications by September 2025',
       '100% backing with high-quality liquid assets; par redemption within one business day',
       'HK$25M paid-up capital, HK$3M liquid capital, plus 12-month operating expense buffer',
       'Transitional period for pre-existing issuers ended January 31, 2026',
     ],
-    lastUpdated: '2026-08',
-    lastVerified: '2026-08-03',
+    lastUpdated: '2026-10',
+    lastVerified: '2026-10-03',
     regulatorName: 'Hong Kong Monetary Authority (HKMA)',
     sources: [
       {
@@ -831,7 +849,7 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'Full backing, segregation, and par redemption required; CHF 100M limit abolished; implementation expected 2027',
     ],
     lastUpdated: '2026-06',
-    lastVerified: '2026-08-03',
+    lastVerified: '2026-10-03',
     regulatorName: 'Swiss Financial Market Supervisory Authority (FINMA)',
     sources: [
       {
@@ -896,7 +914,7 @@ export const REGULATION_COUNTRIES: RegulationCountry[] = [
       'ASIC classifies stablecoins as financial products requiring an AFS license; non-bank stablecoins must be 1:1 collateralized',
     ],
     lastUpdated: '2026-06',
-    lastVerified: '2026-06-12',
+    lastVerified: '2026-10-03',
     regulatorName: 'Australian Treasury, ASIC & Australian Prudential Regulation Authority (APRA)',
     sources: [
       {
