@@ -1,0 +1,21 @@
+// Countries section registry.
+// Each country page is driven entirely by its dataset, looked up by URL slug.
+
+import { canada } from "./canada";
+import type { CountryDataset } from "./types";
+
+export * from "./types";
+export { canada } from "./canada";
+
+/** Every country with a page, keyed by URL slug (/countries/<slug>). */
+export const COUNTRIES: Record<string, CountryDataset> = {
+  canada,
+};
+
+/** Slugs in the order they should appear in navigation and on the index page. */
+export const COUNTRY_SLUGS = Object.keys(COUNTRIES);
+
+export function getCountry(slug: string | undefined): CountryDataset | null {
+  if (!slug) return null;
+  return COUNTRIES[slug] ?? null;
+}

@@ -5,8 +5,8 @@ import {
   ComparisonTable,
   CompanyTimelines,
 } from '../components/canada';
-import { useCanadianStablecoins, useCanadianExchanges, useCanadianReserves } from '../api';
-import type { CanadianStablecoin, ChainSupply } from '../api';
+import { useCountryStablecoins, useCountryExchanges, useCountryReserves } from '../api';
+import type { CountryStablecoin, ChainSupply } from '../api';
 import { ExternalLink } from 'lucide-react';
 
 // Maple Leaf icon for the header
@@ -23,6 +23,8 @@ function MapleLeafIcon({ className }: { className?: string }) {
   );
 }
 
+const COUNTRY_SLUG = 'canada';
+
 const CARD_GRADIENTS: Record<string, string> = {
   cadx: 'from-[#dc2626] to-[#b91c1c]',
   cadc: 'from-[#d92525] to-[#b61b1b]',
@@ -31,7 +33,7 @@ const CARD_GRADIENTS: Record<string, string> = {
 };
 
 interface ReserveCardProps {
-  stablecoin: CanadianStablecoin;
+  stablecoin: CountryStablecoin;
   chains: ChainSupply[] | null;
   isLoadingSupply: boolean;
 }
@@ -247,9 +249,9 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
 }
 
 export function CanadaPage() {
-  const { data: stablecoins, isLoading } = useCanadianStablecoins();
-  const { data: exchanges } = useCanadianExchanges();
-  const { data: reserveSupply, isLoading: isLoadingSupply } = useCanadianReserves();
+  const { data: stablecoins, isLoading } = useCountryStablecoins(COUNTRY_SLUG);
+  const { data: exchanges } = useCountryExchanges(COUNTRY_SLUG);
+  const { data: reserveSupply, isLoading: isLoadingSupply } = useCountryReserves(COUNTRY_SLUG);
 
   if (isLoading) {
     return (
@@ -300,11 +302,7 @@ export function CanadaPage() {
             <ReserveCard
               key={stablecoin.id}
               stablecoin={stablecoin}
-              chains={
-                stablecoin.id === 'cadc' ? reserveSupply?.cadc ?? null
-                : stablecoin.id === 'qcad' ? reserveSupply?.qcad ?? null
-                : null
-              }
+              chains={reserveSupply?.[stablecoin.id] ?? null}
               isLoadingSupply={isLoadingSupply}
             />
           ))}

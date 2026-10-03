@@ -1,121 +1,18 @@
-// Canadian Stablecoins Data Configuration
-// This file contains all data for the Canada page
-// Future: Replace with Supabase API fetch
+// Canada — Countries section dataset.
+// Future: Replace with Supabase API fetch.
 
-export type RegulatoryStage =
-  | "fintrac_msb"
-  | "prospectus_filed"
-  | "prospectus_receipt"
-  | "live";
-
-export type StablecoinStatus = "live" | "coming_soon" | "pending_approval";
-
-export interface RegulatoryStep {
-  id: RegulatoryStage;
-  label: string;
-  description: string;
-  completed: boolean;
-  current: boolean;
-}
-
-export interface ParentCompany {
-  name: string;
-  description: string;
-  founded: string;
-  headquarters: string;
-  website: string;
-  leadership: {
-    name: string;
-    title: string;
-  }[];
-  keyFacts: string[];
-  parentOf?: string[]; // subsidiary companies
-}
-
-export interface CompanyTimelineEvent {
-  date: string;
-  title: string;
-  description: string;
-  type: "milestone" | "regulatory" | "funding" | "launch" | "partnership";
-}
-
-export interface StrategicPartner {
-  name: string;
-  role: string;
-}
-
-export interface DesignPartner {
-  name: string;
-}
-
-export interface PlatformIntegration {
-  name: string;
-  role: string;
-}
-
-export interface ReserveMetadata {
-  tokenLogo?: string;
-  chainLabel?: string;
-  reserveRatio: string;
-  custodian: string;
-  lastAttested: string;
-  attestationFrequency: string;
-  attestationUrl?: string;
-  supplyNote?: string;
-  attestedSupply?: number; // Total issued per latest regulatory filing (overrides live on-chain sum)
-  attestedSupplySource?: string; // e.g. "SEDAR+ Apr 2026"
-}
-
-export interface CanadianStablecoin {
-  id: string;
-  name: string;
-  symbol: string;
-  issuer: string;
-  logo?: string;
-  status: StablecoinStatus;
-  statusLabel: string;
-  tagline: string;
-  founded: string;
-  headquarters: string;
-  website: string;
-  backing: string;
-  custodian: string;
-  blockchains: string[];
-  backers: string[];
-  strategicPartners?: StrategicPartner[];
-  designPartners?: DesignPartner[];
-  platformIntegrations?: PlatformIntegration[];
-  regulatorySteps: RegulatoryStep[];
-  fintracRegistered: boolean;
-  audits: string;
-  volume?: string;
-  exchangePartners: number;
-  parentCompany: ParentCompany;
-  companyTimeline: CompanyTimelineEvent[];
-  reserveMetadata: ReserveMetadata;
-}
-
-export interface Exchange {
-  name: string;
-  type: "CEX" | "DEX";
-  url: string;
-  logo?: string;
-  stablecoins: string[]; // which stablecoins are available
-}
-
-export interface TimelineEvent {
-  date: string;
-  title: string;
-  description: string;
-  type: "milestone" | "regulatory" | "funding" | "launch" | "partnership";
-  stablecoinId?: string;
-}
+import type {
+  CountryDataset,
+  CountryStablecoin,
+  Exchange,
+  TimelineEvent,
+} from "./types";
 
 // ============================================
 // STABLECOIN DATA
 // ============================================
 
-export const canadianStablecoins: CanadianStablecoin[] = [
+export const canadianStablecoins: CountryStablecoin[] = [
   {
     id: "cadx",
     name: "CADX",
@@ -935,3 +832,35 @@ export const timelineEvents: TimelineEvent[] = [
     type: "regulatory",
   },
 ];
+
+// ============================================
+// LIVE SUPPLY SOURCES
+// ============================================
+
+const ETH_RPC = "https://ethereum.publicnode.com";
+
+// CADC is indexed by DefiLlama; QCAD is not, so its Ethereum contract is read directly.
+// Both behaviours are carried over unchanged from the previous useCanadianReserves hook.
+export const canadaSupplySources: CountryDataset["supplySources"] = {
+  cadc: { kind: "defillama", id: "145" },
+  qcad: {
+    kind: "erc20",
+    address: "0x3Fa142dD3f384414e05E71Ad0939274EdC82EC0A",
+    decimals: 6,
+    chains: [{ chain: "Ethereum", rpcUrl: ETH_RPC }],
+  },
+};
+
+export const canada: CountryDataset = {
+  meta: {
+    slug: "canada",
+    name: "Canada",
+    locale: "en-CA",
+    currency: "CAD",
+    regulationCode: "ca",
+  },
+  stablecoins: canadianStablecoins,
+  exchanges,
+  timelineEvents,
+  supplySources: canadaSupplySources,
+};
