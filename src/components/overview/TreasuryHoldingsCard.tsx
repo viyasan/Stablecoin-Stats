@@ -2,7 +2,7 @@ import { Landmark } from 'lucide-react';
 
 // Static data - update periodically from US Treasury TIC Data
 // Source: https://ticdata.treasury.gov/resource-center/data-chart-center/tic/Documents/slt_table5.html
-// Last updated: February 2026 TIC Data (released April 2026)
+// Last updated: July 2026 TIC Data (released September 16, 2026)
 
 interface HolderData {
   name: string;
@@ -12,26 +12,27 @@ interface HolderData {
   flag?: string;
 }
 
-// Top 8 foreign holders of US Treasury securities (February 2026)
+// Top 8 foreign holders of US Treasury securities (July 2026)
 // Plus stablecoin issuers with their actual global rankings
 const HOLDERS: HolderData[] = [
-  { name: 'Japan', holdings: 1240.0, globalRank: 1, type: 'country', flag: '🇯🇵' },
-  { name: 'United Kingdom', holdings: 897.0, globalRank: 2, type: 'country', flag: '🇬🇧' },
-  { name: 'Belgium', holdings: 455.0, globalRank: 3, type: 'country', flag: '🇧🇪' },
-  { name: 'Canada', holdings: 446.0, globalRank: 4, type: 'country', flag: '🇨🇦' },
-  { name: 'Luxembourg', holdings: 446.0, globalRank: 5, type: 'country', flag: '🇱🇺' },
-  { name: 'Cayman Islands', holdings: 443.0, globalRank: 6, type: 'country', flag: '🇰🇾' },
-  { name: 'Ireland', holdings: 351.0, globalRank: 7, type: 'country', flag: '🇮🇪' },
-  { name: 'Taiwan', holdings: 314.0, globalRank: 8, type: 'country', flag: '🇹🇼' },
+  { name: 'Japan', holdings: 1103.9, globalRank: 1, type: 'country', flag: '🇯🇵' },
+  { name: 'United Kingdom', holdings: 998.3, globalRank: 2, type: 'country', flag: '🇬🇧' },
+  { name: 'China', holdings: 618.0, globalRank: 3, type: 'country', flag: '🇨🇳' },
+  { name: 'Belgium', holdings: 470.7, globalRank: 4, type: 'country', flag: '🇧🇪' },
+  { name: 'Cayman Islands', holdings: 460.1, globalRank: 5, type: 'country', flag: '🇰🇾' },
+  { name: 'Luxembourg', holdings: 442.1, globalRank: 6, type: 'country', flag: '🇱🇺' },
+  { name: 'Canada', holdings: 426.3, globalRank: 7, type: 'country', flag: '🇨🇦' },
+  { name: 'Ireland', holdings: 350.2, globalRank: 8, type: 'country', flag: '🇮🇪' },
   // Stablecoin issuers with actual global rankings
-  // Tether: $141B direct Treasury exposure - ranks 17th globally. Last disclosed in the Q1 2026 attestation (BDO,
+  // Tether: $141B direct Treasury exposure - ranks 18th globally (between Saudi Arabia $142.4B and South Korea $131.5B, July 2026 TIC). Last disclosed in the Q1 2026 attestation (BDO,
   // snapshot 2026-03-31); the Q2 2026 attestation (snapshot 2026-06-30, published 2026-07-31; $187.75B total assets,
   // $4.11B excess reserves) did not restate a standalone Treasury dollar figure, so $141B is retained.
   // https://tether.to/en/transparency/
-  { name: 'Tether (USDT)', holdings: 141, globalRank: 17, type: 'stablecoin' },
-  // Circle USDC: $67.67B AUM in Circle Reserve Fund (USDXX) per BlackRock June 2026 - rank ~28 globally
+  { name: 'Tether (USDT)', holdings: 141, globalRank: 18, type: 'stablecoin' },
+  // Circle USDC: $62.47B fund size of Circle Reserve Fund (USDXX) per BlackRock, Sept 30, 2026 - rank ~28 globally
+  // (approximate: below Germany $91.3B and UAE $64.9B in July 2026 TIC; recheck against slt_table5)
   // https://www.blackrock.com/cash/en-us/products/329365/circle-reserve-fund
-  { name: 'Circle (USDC)', holdings: 67.67, globalRank: 28, type: 'stablecoin' },
+  { name: 'Circle (USDC)', holdings: 62.47, globalRank: 28, type: 'stablecoin' },
 ];
 
 function formatBillions(value: number): string {
@@ -63,7 +64,7 @@ export function TreasuryHoldingsCard() {
             rel="noopener noreferrer"
             className="text-xs text-chrome-400 hover:text-chrome-600"
           >
-            Source: Feb 2026 TIC
+            Source: Jul 2026 TIC
           </a>
         </div>
         <p className="text-xs text-chrome-500 mt-1">

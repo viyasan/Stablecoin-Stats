@@ -2,15 +2,15 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Lightbulb } from 'lucide-react';
 
 // Hardcoded insights - update weekly
-// Last updated: August 2026
+// Last updated: October 2026
 const INSIGHTS = [
   {
     id: 1,
-    text: "USDT and USDC together control roughly 83% of the ~$300 billion stablecoin market.",
+    text: "USDT and USDC together control roughly 82% of the ~$315 billion stablecoin market.",
   },
   {
     id: 2,
-    text: "Ethereum and Tron blockchains host nearly 90% of all stablecoin value.",
+    text: "Ethereum and Tron blockchains host roughly 80% of all stablecoin value.",
   },
   {
     id: 3,
@@ -22,7 +22,7 @@ const INSIGHTS = [
   },
   {
     id: 5,
-    text: "The GENIUS Act set the U.S. framework for payment stablecoins in July 2025, but regulators missed the July 18, 2026 deadline to finalize implementing rules — finalization is now expected in staggered releases later in 2026.",
+    text: "The GENIUS Act set the U.S. framework for payment stablecoins in July 2025. After regulators missed the July 2026 rulemaking deadline, Treasury issued the first binding rule on Sept 30, 2026, letting issuers under $10B opt for state oversight. The OCC is targeting its final rule for November.",
   },
   {
     id: 6,
@@ -30,7 +30,7 @@ const INSIGHTS = [
   },
   {
     id: 7,
-    text: "Canada's Stablecoin Act (Bill C-15) took effect via Royal Assent in March 2026, with QCAD, CADD and CADC now live and draft implementing regulations expected during 2026.",
+    text: "Canada's Stablecoin Act (Bill C-15) received Royal Assent in March 2026. QCAD, CADD and CADC are all live, with QCAD now on Arc mainnet and CADD on Solana, while draft regulations are still pending ahead of 2027 oversight.",
   },
 ];
 

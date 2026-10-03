@@ -41,7 +41,7 @@ describe('QuickInsightsCarousel', () => {
     });
 
     // Second insight should now be visible
-    expect(screen.getByText(/Ethereum and Tron blockchains host nearly 90%/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ethereum and Tron blockchains host roughly 80%/i)).toBeInTheDocument();
   });
 
   it('navigates to previous insight when clicking previous button', () => {
@@ -94,7 +94,7 @@ describe('QuickInsightsCarousel', () => {
     });
 
     // Should now show second insight
-    expect(screen.getByText(/Ethereum and Tron blockchains host nearly 90%/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ethereum and Tron blockchains host roughly 80%/i)).toBeInTheDocument();
   });
 
   it('pauses auto-rotation on hover', () => {
@@ -129,7 +129,7 @@ describe('QuickInsightsCarousel', () => {
     });
 
     // Should now show second insight
-    expect(screen.getByText(/Ethereum and Tron blockchains host nearly 90%/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ethereum and Tron blockchains host roughly 80%/i)).toBeInTheDocument();
   });
 
   it('shows dot indicators for each insight', () => {

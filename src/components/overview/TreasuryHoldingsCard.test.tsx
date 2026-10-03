@@ -13,16 +13,16 @@ describe('TreasuryHoldingsCard', () => {
     render(<TreasuryHoldingsCard />);
 
     expect(screen.getByText(/Combined Stablecoin Holdings/i)).toBeInTheDocument();
-    // Tether $141B + Circle $67.67B = $209B
-    expect(screen.getByText('$209B')).toBeInTheDocument();
+    // Tether $141B + Circle $62.47B = $203B
+    expect(screen.getByText('$203B')).toBeInTheDocument();
   });
 
   it('displays top foreign holders with rankings', () => {
     render(<TreasuryHoldingsCard />);
 
-    // Japan should be first ($1240B = $1.24T)
+    // Japan should be first ($1103.9B = $1.10T)
     expect(screen.getByText('Japan')).toBeInTheDocument();
-    expect(screen.getByText('$1.24T')).toBeInTheDocument();
+    expect(screen.getByText('$1.10T')).toBeInTheDocument();
   });
 
   it('displays country flags', () => {
@@ -43,7 +43,7 @@ describe('TreasuryHoldingsCard', () => {
   it('includes TIC data source link', () => {
     render(<TreasuryHoldingsCard />);
 
-    const sourceLink = screen.getByRole('link', { name: /source: feb 2026 tic/i });
+    const sourceLink = screen.getByRole('link', { name: /source: jul 2026 tic/i });
     expect(sourceLink).toHaveAttribute('href', expect.stringContaining('ticdata.treasury.gov'));
     expect(sourceLink).toHaveAttribute('target', '_blank');
   });
@@ -52,7 +52,7 @@ describe('TreasuryHoldingsCard', () => {
     render(<TreasuryHoldingsCard />);
 
     expect(screen.getByText('#1')).toBeInTheDocument();
-    expect(screen.getByText('#17')).toBeInTheDocument(); // Tether
+    expect(screen.getByText('#18')).toBeInTheDocument(); // Tether
     expect(screen.getByText('#28')).toBeInTheDocument(); // Circle
   });
 });

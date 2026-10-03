@@ -422,7 +422,7 @@ export const canadianStablecoins: CanadianStablecoin[] = [
         "Backed by Coinbase Ventures and Circle Ventures",
         "TD Bank Group is primary reserve custodian (Jul 2026), joining VersaBank and Tetra Trust",
         "VersaBank custody agreement (Feb 2026) - first stablecoin at a Schedule I bank",
-        "Live on Circle's StableFX (Arc testnet) — first onchain CAD/USD settlement, after USDC and EURC",
+        "Live on Arc mainnet via Circle's StableFX (Sept 2026) — first onchain CAD/USD settlement, after USDC and EURC",
         "22 ecosystem partners including exchanges and DEXs",
       ],
     },
@@ -521,6 +521,13 @@ export const canadianStablecoins: CanadianStablecoin[] = [
           "Co-founder Fred Pye takes on a capital markets mandate, extending QCAD beyond payments into equities, fixed income and tokenized real-world assets as an onchain settlement layer",
         type: "milestone",
       },
+      {
+        date: "Sept 16, 2026",
+        title: "QCAD Live on Arc Mainnet",
+        description:
+          "QCAD goes live on Arc mainnet on launch day, moving its StableFX integration from testnet to production — Canadian institutions can now settle CAD against other supported currencies onchain, 24/7",
+        type: "launch",
+      },
     ],
     reserveMetadata: {
       reserveRatio: "100% (1:1)",
@@ -547,7 +554,7 @@ export const canadianStablecoins: CanadianStablecoin[] = [
     website: "https://tetradg.com/cadd-stablecoin/",
     backing: "1:1 CAD reserves held in trust by Tetra Trust under Canadian law (regulated by Alberta Treasury Board and Finance)",
     custodian: "Tetra Trust Company",
-    blockchains: ["Base", "Ethereum", "Tempo"],
+    blockchains: ["Base", "Ethereum", "Tempo", "Solana"],
     backers: [
       "National Bank of Canada",
       "Shopify",
@@ -684,6 +691,12 @@ export const canadianStablecoins: CanadianStablecoin[] = [
         date: "May 4, 2026",
         title: "CADD Launch",
         description: "CADD goes live on Base, Ethereum, and Tempo (Solana to follow)",
+        type: "launch",
+      },
+      {
+        date: "Sept 23, 2026",
+        title: "CADD Launches on Solana",
+        description: "CADD goes live on Solana, its fourth network",
         type: "launch",
       },
     ],
@@ -899,6 +912,20 @@ export const timelineEvents: TimelineEvent[] = [
     title: "21 Global Banks Commit to Multi-Currency Stablecoin",
     description: "Twenty-one international banks — including Scotiabank and TD Bank Group — commit to form a company in H2 2026 to issue a USD stablecoin in H1 2027, with CAD named alongside GBP and JPY as later G7 targets",
     type: "partnership",
+  },
+  {
+    date: "Sept 16, 2026",
+    title: "QCAD Goes Live on Arc Mainnet",
+    description: "QCAD launches on Circle's Arc mainnet with StableFX in production, enabling 24/7 onchain CAD settlement against other supported currencies",
+    type: "launch",
+    stablecoinId: "qcad",
+  },
+  {
+    date: "Sept 23, 2026",
+    title: "CADD Launches on Solana",
+    description: "Tetra brings CADD to Solana, its fourth network after Base, Ethereum, and Tempo",
+    type: "launch",
+    stablecoinId: "tetra",
   },
   {
     date: "2027",
