@@ -44,3 +44,9 @@ class IntersectionObserverMock {
 }
 
 globalThis.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;
+
+// jsdom does not implement scrollTo; the router's page-view tracker calls it on navigation
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: () => {},
+});

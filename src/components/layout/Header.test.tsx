@@ -22,7 +22,7 @@ describe('Header', () => {
     renderHeader();
 
     expect(screen.getByRole('link', { name: /overview/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /canada/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /countries/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /^regulation$/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /news/i })).toBeInTheDocument();
   });
@@ -41,18 +41,18 @@ describe('Header', () => {
     expect(overviewLink).toHaveAttribute('href', '/');
   });
 
-  it('canada link has correct href', () => {
-    renderHeader();
-
-    const canadaLink = screen.getByRole('link', { name: /canada/i });
-    expect(canadaLink).toHaveAttribute('href', '/canada');
-  });
-
   it('countries link has correct href', () => {
     renderHeader();
 
-    const countriesLink = screen.getByRole('link', { name: /^regulation$/i });
+    const countriesLink = screen.getByRole('link', { name: /^countries$/i });
     expect(countriesLink).toHaveAttribute('href', '/countries');
+  });
+
+  it('regulation link has correct href', () => {
+    renderHeader();
+
+    const regulationLink = screen.getByRole('link', { name: /^regulation$/i });
+    expect(regulationLink).toHaveAttribute('href', '/regulation');
   });
 
   it('news link has correct href', () => {
@@ -81,8 +81,8 @@ describe('Header', () => {
     fireEvent.click(menuButton);
 
     // Mobile menu should now be visible (multiple nav links now appear)
-    const canadaLinks = screen.getAllByRole('link', { name: /canada/i });
-    expect(canadaLinks.length).toBeGreaterThanOrEqual(2); // Desktop + mobile
+    const countriesLinks = screen.getAllByRole('link', { name: /^countries$/i });
+    expect(countriesLinks.length).toBeGreaterThanOrEqual(2); // Desktop + mobile
   });
 
   it('has sticky header styling', () => {
@@ -99,21 +99,13 @@ describe('Header', () => {
     expect(header).toHaveClass('bg-white');
   });
 
-  it('renders Canada nav item with maple leaf icon', () => {
-    const { container } = renderHeader();
-
-    // The maple leaf is an SVG
-    const svgs = container.querySelectorAll('svg');
-    expect(svgs.length).toBeGreaterThan(0);
-  });
-
   it('highlights active navigation item', () => {
-    renderHeader('/canada');
+    renderHeader('/countries/canada');
 
-    // The Canada link should have active styling when on /canada route
-    const canadaLinks = screen.getAllByRole('link', { name: /canada/i });
-    const desktopCanadaLink = canadaLinks[0];
-    expect(desktopCanadaLink).toHaveClass('text-gold-600');
+    // The Countries link stays active on nested country routes
+    const countriesLinks = screen.getAllByRole('link', { name: /^countries$/i });
+    const desktopCountriesLink = countriesLinks[0];
+    expect(desktopCountriesLink).toHaveClass('text-gold-600');
     expect(screen.getAllByRole('link', { name: /news/i })[0]).toHaveClass('text-chrome-500');
   });
 });

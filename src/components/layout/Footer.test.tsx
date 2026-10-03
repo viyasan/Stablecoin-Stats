@@ -28,7 +28,7 @@ describe('Footer', () => {
     renderFooter();
 
     expect(screen.getByText('Explore')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Canada' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Countries' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Regulation' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'News' })).toBeInTheDocument();
   });
@@ -43,8 +43,8 @@ describe('Footer', () => {
   it('navigation links have correct hrefs', () => {
     renderFooter();
 
-    expect(screen.getByRole('link', { name: 'Canada' })).toHaveAttribute('href', '/canada');
-    expect(screen.getByRole('link', { name: 'Regulation' })).toHaveAttribute('href', '/countries');
+    expect(screen.getByRole('link', { name: 'Countries' })).toHaveAttribute('href', '/countries');
+    expect(screen.getByRole('link', { name: 'Regulation' })).toHaveAttribute('href', '/regulation');
     expect(screen.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/news');
   });
 
@@ -58,7 +58,7 @@ describe('Footer', () => {
   });
 
   it('does not render data sources on non-overview pages', () => {
-    renderFooter('/canada');
+    renderFooter('/countries/canada');
 
     expect(screen.queryByRole('link', { name: 'DefiLlama' })).not.toBeInTheDocument();
   });

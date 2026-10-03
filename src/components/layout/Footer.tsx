@@ -27,13 +27,13 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Explore</h4>
             <ul className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
               <li>
-                <Link to="/countries" className="hover:text-gold-400 transition-colors duration-150">
+                <Link to="/regulation" className="hover:text-gold-400 transition-colors duration-150">
                   Regulation
                 </Link>
               </li>
               <li>
-                <Link to="/canada" className="hover:text-gold-400 transition-colors duration-150">
-                  Canada
+                <Link to="/countries" className="hover:text-gold-400 transition-colors duration-150">
+                  Countries
                 </Link>
               </li>
               <li>

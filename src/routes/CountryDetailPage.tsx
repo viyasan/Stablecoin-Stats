@@ -21,8 +21,8 @@ export function CountryDetailPage() {
       <PageContainer>
         <div className="text-center py-16">
           <p className="text-chrome-500 mb-4">Country not found</p>
-          <Link to="/countries" className="text-gold-500 hover:text-gold-600">
-            ← Back to Countries
+          <Link to="/regulation" className="text-gold-500 hover:text-gold-600">
+            ← Back to Regulation
           </Link>
         </div>
       </PageContainer>
@@ -42,10 +42,10 @@ export function CountryDetailPage() {
     <PageContainer>
       <div className="mb-6">
         <Link
-          to="/countries"
+          to="/regulation"
           className="text-sm text-chrome-500 hover:text-chrome-700"
         >
-          ← Back to Countries
+          ← Back to Regulation
         </Link>
       </div>
 
