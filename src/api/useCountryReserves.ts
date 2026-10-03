@@ -20,14 +20,41 @@ interface UseApiResult<T> {
 const ERC20_TOTAL_SUPPLY_SELECTOR = '0x18160ddd';
 
 /**
+ * The DefiLlama list covers every asset in one response, so a page tracking several
+ * of them shares a single request rather than downloading the list once per asset.
+ * Kept per fetch cycle, not cached across them, so refetch() still gets fresh data.
+ */
+let inFlightList: Promise<DefiLlamaList> | null = null;
+
+interface DefiLlamaList {
+  peggedAssets?: {
+    id: string;
+    chainCirculating?: Record<string, { current?: Record<string, number> }>;
+  }[];
+}
+
+function fetchDefiLlamaList(): Promise<DefiLlamaList> {
+  if (!inFlightList) {
+    inFlightList = fetch('https://stablecoins.llama.fi/stablecoins')
+      .then((res) => {
+        if (!res.ok) throw new Error('DefiLlama fetch failed');
+        return res.json();
+      })
+      .finally(() => {
+        // Release once settled so the next refetch starts a new request.
+        inFlightList = null;
+      });
+  }
+  return inFlightList;
+}
+
+/**
  * Reads per-chain circulating supply from DefiLlama. Works for any asset DefiLlama
  * indexes, whatever its peg currency — the per-chain figures live under a
  * `pegged<CCY>` key that varies by asset, so take whichever one is present.
  */
 async function fetchFromDefiLlama(id: string): Promise<ChainSupply[]> {
-  const res = await fetch('https://stablecoins.llama.fi/stablecoins');
-  if (!res.ok) throw new Error('DefiLlama fetch failed');
-  const json = await res.json();
+  const json = await fetchDefiLlamaList();
 
   const asset = json.peggedAssets?.find((a: { id: string }) => a.id === id);
   if (!asset) throw new Error(`Asset ${id} not found in DefiLlama`);

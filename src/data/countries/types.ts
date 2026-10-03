@@ -84,8 +84,10 @@ export interface CountryStablecoin {
   strategicPartners?: StrategicPartner[];
   designPartners?: DesignPartner[];
   platformIntegrations?: PlatformIntegration[];
-  regulatorySteps: RegulatoryStep[];
-  fintracRegistered: boolean;
+  /** Canada-specific regulatory ladder; omitted by other countries. */
+  regulatorySteps?: RegulatoryStep[];
+  /** Canada-specific FINTRAC MSB registration; omitted by other countries. */
+  fintracRegistered?: boolean;
   audits: string;
   volume?: string;
   exchangePartners: number;

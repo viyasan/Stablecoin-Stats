@@ -124,11 +124,11 @@ function StablecoinTracker({ stablecoin }: StablecoinTrackerProps) {
 
       {/* Progress Bar */}
       <div className="flex items-start px-4">
-        {stablecoin.regulatorySteps.map((step, index) => (
+        {(stablecoin.regulatorySteps ?? []).map((step, index) => (
           <ProgressStep
             key={step.id}
             step={step}
-            isLast={index === stablecoin.regulatorySteps.length - 1}
+            isLast={index === (stablecoin.regulatorySteps?.length ?? 0) - 1}
           />
         ))}
       </div>

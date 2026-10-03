@@ -46,11 +46,22 @@ describe('App routing', () => {
     });
   });
 
-  it('redirects legacy /countries/:code regulation links to /regulation/:code', async () => {
+  it('redirects legacy /countries/:code links for codes no country claims', async () => {
+    // 'jp' has a regulation entry but no country dataset, so it still forwards.
+    renderAt('/countries/jp');
+
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/regulation/jp');
+    });
+  });
+
+  it('serves the US country page now that a US dataset exists', async () => {
+    // /countries/us previously forwarded to /regulation/us. Adding the dataset
+    // transfers ownership of the URL to the Countries section, by design.
     renderAt('/countries/us');
 
     await waitFor(() => {
-      expect(window.location.pathname).toBe('/regulation/us');
+      expect(window.location.pathname).toBe('/countries/us');
     });
   });
 

@@ -2,13 +2,16 @@
 // Each country page is driven entirely by its dataset, looked up by URL slug.
 
 import { canada } from "./canada";
+import { us } from "./us";
 import type { CountryDataset } from "./types";
 
 export * from "./types";
 export { canada } from "./canada";
+export { us } from "./us";
 
 /** Every country with a page, keyed by URL slug (/countries/<slug>). */
 export const COUNTRIES: Record<string, CountryDataset> = {
+  us,
   canada,
 };
 

@@ -7,6 +7,7 @@ import {
   CompanyProfileCards,
   CompanyTimelines,
   CountryFlag,
+  HonourableMentions,
 } from '../components/countries-market';
 import { useCountryStablecoins, useCountryExchanges, useCountryReserves } from '../api';
 import { getCountry } from '../data/countries';
@@ -101,6 +102,13 @@ export function CountryMarketPage() {
           exchanges={exchanges || []}
         />
       </section>
+
+      {/* Honourable Mentions */}
+      {dataset.honourableMentions && dataset.honourableMentions.length > 0 && (
+        <section className="mb-8">
+          <HonourableMentions groups={dataset.honourableMentions} />
+        </section>
+      )}
 
       {/* Company Timelines */}
       {hasTimelines && (
