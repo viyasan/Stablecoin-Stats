@@ -13,56 +13,56 @@ describe('Tag', () => {
     render(<Tag label="regulation" />);
 
     const tag = screen.getByText('regulation');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-gold-100', 'text-gold-600');
   });
 
   it('applies depeg topic color', () => {
     render(<Tag label="depeg" />);
 
     const tag = screen.getByText('depeg');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-status-negative/10', 'text-status-negative');
   });
 
   it('applies integration topic color', () => {
     render(<Tag label="integration" />);
 
     const tag = screen.getByText('integration');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-status-positive/10', 'text-status-positive');
   });
 
   it('applies infrastructure topic color', () => {
     render(<Tag label="infrastructure" />);
 
     const tag = screen.getByText('infrastructure');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-chrome-200', 'text-chrome-700');
   });
 
   it('applies payments topic color', () => {
     render(<Tag label="payments" />);
 
     const tag = screen.getByText('payments');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-gold-100', 'text-gold-600');
   });
 
   it('applies reserve topic color', () => {
     render(<Tag label="reserve" />);
 
     const tag = screen.getByText('reserve');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-bronze-400/10', 'text-bronze-500');
   });
 
   it('applies launch topic color', () => {
     render(<Tag label="launch" />);
 
     const tag = screen.getByText('launch');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-status-positive/10', 'text-status-positive');
   });
 
   it('applies partnership topic color', () => {
     render(<Tag label="partnership" />);
 
     const tag = screen.getByText('partnership');
-    expect(tag).toHaveClass('bg-chrome-100', 'text-chrome-600');
+    expect(tag).toHaveClass('bg-status-positive/10', 'text-status-positive');
   });
 
   it('applies default gray color for unknown topics', () => {

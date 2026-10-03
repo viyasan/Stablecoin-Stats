@@ -23,3 +23,24 @@ class ResizeObserverMock {
 }
 
 globalThis.ResizeObserver = ResizeObserverMock;
+
+// Mock IntersectionObserver for FadeInSlide; reports every element as visible immediately
+class IntersectionObserverMock {
+  private callback: IntersectionObserverCallback;
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback;
+  }
+  observe(target: Element) {
+    this.callback(
+      [{ isIntersecting: true, target } as IntersectionObserverEntry],
+      this as unknown as IntersectionObserver
+    );
+  }
+  unobserve() {}
+  disconnect() {}
+  takeRecords() {
+    return [];
+  }
+}
+
+globalThis.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;

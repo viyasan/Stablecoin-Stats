@@ -29,7 +29,7 @@ describe('Footer', () => {
 
     expect(screen.getByText('Explore')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Canada' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Regulatory Landscape' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Regulation' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'News' })).toBeInTheDocument();
   });
 
@@ -37,14 +37,14 @@ describe('Footer', () => {
     renderFooter();
 
     expect(screen.getByText('Legal')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Disclaimer & Disclosures' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Disclaimer' })).toBeInTheDocument();
   });
 
   it('navigation links have correct hrefs', () => {
     renderFooter();
 
     expect(screen.getByRole('link', { name: 'Canada' })).toHaveAttribute('href', '/canada');
-    expect(screen.getByRole('link', { name: 'Regulatory Landscape' })).toHaveAttribute('href', '/countries');
+    expect(screen.getByRole('link', { name: 'Regulation' })).toHaveAttribute('href', '/countries');
     expect(screen.getByRole('link', { name: 'News' })).toHaveAttribute('href', '/news');
   });
 
