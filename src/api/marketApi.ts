@@ -438,8 +438,8 @@ export interface StablecoinReserve {
 //   $4.11B excess reserves, gold >146 tons (+14 tons in-quarter), secured lending cut ~15%, ~$1.5B net operating profit.
 //   Q2 press materials did NOT restate a standalone US Treasury dollar figure, so treasuryHoldings retains the last
 //   disclosed direct-Treasury number ($141B, Q1 2026 BDO). USDT >60% of global stablecoin market cap.
-// Circle: https://www.circle.com/transparency (weekly disclosure)
-// Last updated: August 2026
+// Circle: Circle Reserve Fund (USDXX) fund size $62.47B per BlackRock, Sept 30, 2026; https://www.circle.com/transparency
+// Last updated: October 2026
 const RESERVE_DATA = {
   USDT: {
     name: 'Tether',

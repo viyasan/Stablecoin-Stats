@@ -109,7 +109,7 @@ export function QuickInsightsCarousel() {
           </h3>
         </div>
         <span className="text-xs text-chrome-500">
-          Last updated: August 2026
+          Last updated: October 2026
         </span>
       </div>
       <div className="px-6 py-5 flex-1 flex flex-col min-h-0">
