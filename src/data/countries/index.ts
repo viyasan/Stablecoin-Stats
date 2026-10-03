@@ -3,15 +3,18 @@
 
 import { canada } from "./canada";
 import { us } from "./us";
+import { uk } from "./uk";
 import type { CountryDataset } from "./types";
 
 export * from "./types";
 export { canada } from "./canada";
 export { us } from "./us";
+export { uk } from "./uk";
 
 /** Every country with a page, keyed by URL slug (/countries/<slug>). */
 export const COUNTRIES: Record<string, CountryDataset> = {
   us,
+  uk,
   canada,
 };
 
