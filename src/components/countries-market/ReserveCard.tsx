@@ -1,46 +1,25 @@
-import { PageContainer } from '../components/layout';
-import { SkeletonCanadaPage } from '../components/common';
-import {
-  CompanyProfileCards,
-  ComparisonTable,
-  CompanyTimelines,
-} from '../components/canada';
-import { useCountryStablecoins, useCountryExchanges, useCountryReserves } from '../api';
-import type { CountryStablecoin, ChainSupply } from '../api';
 import { ExternalLink } from 'lucide-react';
-
-// Maple Leaf icon for the header
-function MapleLeafIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 512 512"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M383.8 351.7c2.5-2.5 105.2-92.4 105.2-92.4l-17.5-7.5c-10-4.9-7.4-11.5-5-17.4 2.4-7.6 20.1-67.3 20.1-67.3s-47.7 10-57.7 12.5c-7.5 2.4-10-2.5-12.5-7.5s-15-32.4-15-32.4-52.6 59.9-55.1 62.3c-10 7.5-20.1 0-17.6-10 0-10 27.6-129.6 27.6-129.6s-30.1 17.4-40.1 22.4c-7.5 5-12.6 5-17.6-5C293.5 72.3 255.9 0 255.9 0s-37.5 72.3-42.5 79.8c-5 10-10 10-17.6 5-10-5-40.1-22.4-40.1-22.4S183.3 182 183.3 192c2.5 10-7.5 17.5-17.6 10-2.5-2.5-55.1-62.3-55.1-62.3S98.1 167 95.6 172s-5 9.9-12.5 7.5C73 177 25.4 167 25.4 167s17.6 59.7 20.1 67.3c2.4 6 5 12.5-5 17.4L23 259.3s102.6 89.9 105.2 92.4c5.1 5 10 7.5 5.1 22.5-5.1 15-10.1 35.1-10.1 35.1s95.2-20.1 105.3-22.6c8.7-.9 18.3 2.5 18.3 12.5S241 512 241 512h30s-5.8-102.7-5.8-112.8 9.5-13.4 18.4-12.5c10 2.5 105.2 22.6 105.2 22.6s-5-20.1-10-35.1 0-17.5 5-22.5z" />
-    </svg>
-  );
-}
-
-const COUNTRY_SLUG = 'canada';
-
-const CARD_GRADIENTS: Record<string, string> = {
-  cadx: 'from-[#dc2626] to-[#b91c1c]',
-  cadc: 'from-[#d92525] to-[#b61b1b]',
-  qcad: 'from-[#dc2626] to-[#b91c1c]',
-  tetra: 'from-[#d52424] to-[#b21a1a]',
-};
+import type { CountryStablecoin, ChainSupply, CountryMeta } from '../../api';
 
 interface ReserveCardProps {
   stablecoin: CountryStablecoin;
   chains: ChainSupply[] | null;
   isLoadingSupply: boolean;
+  country: CountryMeta;
+  /** Optional per-issuer gradient overrides, keyed by stablecoin id. */
+  cardGradients?: Record<string, string>;
 }
 
-function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) {
+export function ReserveCard({
+  stablecoin,
+  chains,
+  isLoadingSupply,
+  country,
+  cardGradients,
+}: ReserveCardProps) {
+  const { locale, currencySymbol, accent } = country;
   const meta = stablecoin.reserveMetadata;
-  const gradient = CARD_GRADIENTS[stablecoin.id] ?? 'from-[#dc2626] to-[#b91c1c]';
+  const gradient = cardGradients?.[stablecoin.id] ?? accent.gradient;
   const logoSrc = meta.tokenLogo ?? stablecoin.logo;
 
   const onChainTotal = chains?.reduce((sum, c) => sum + c.amount, 0) ?? 0;
@@ -80,20 +59,20 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
         ) : isPremint ? (
           <div className="flex items-baseline gap-2 flex-wrap">
             <span className="text-base font-bold text-chrome-900">
-              {attestedBacked.toLocaleString('en-CA', { maximumFractionDigits: 0 })} {stablecoin.symbol}
+              {attestedBacked.toLocaleString(locale, { maximumFractionDigits: 0 })} {stablecoin.symbol}
             </span>
             <span className="flex items-center gap-1 text-[10px] text-gold-600 font-semibold bg-gold-50 px-1.5 py-0.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
               Attested
             </span>
             <span className="text-[11px] text-chrome-400">
-              of {onChainTotal.toLocaleString('en-CA', { maximumFractionDigits: 0 })} on-chain
+              of {onChainTotal.toLocaleString(locale, { maximumFractionDigits: 0 })} on-chain
             </span>
           </div>
         ) : hasLiveData ? (
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-base font-bold text-chrome-900">
-              {onChainTotal.toLocaleString('en-CA', { maximumFractionDigits: 0 })} {stablecoin.symbol}
+              {onChainTotal.toLocaleString(locale, { maximumFractionDigits: 0 })} {stablecoin.symbol}
             </span>
             <span className="flex items-center gap-1 text-[10px] text-status-positive font-semibold bg-status-positive/10 px-1.5 py-0.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-status-positive" />
@@ -103,7 +82,7 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
         ) : meta.attestedSupply ? (
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-base font-bold text-chrome-900">
-              {meta.attestedSupply.toLocaleString('en-CA', { maximumFractionDigits: 0 })} {stablecoin.symbol}
+              {meta.attestedSupply.toLocaleString(locale, { maximumFractionDigits: 0 })} {stablecoin.symbol}
             </span>
             <span className="flex items-center gap-1 text-[10px] text-gold-600 font-semibold bg-gold-50 px-1.5 py-0.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
@@ -133,11 +112,11 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
             <div>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-semibold text-chrome-700">Backed &amp; attested</span>
-                <span className="text-xs text-chrome-500">{attestedBacked.toLocaleString('en-CA')}</span>
+                <span className="text-xs text-chrome-500">{attestedBacked.toLocaleString(locale)}</span>
               </div>
               <div className="h-1.5 bg-chrome-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-red-600 rounded-full"
+                  className={`h-full ${accent.bar} rounded-full`}
                   style={{ width: `${Math.max((attestedBacked / onChainTotal) * 100, 1.5)}%` }}
                 />
               </div>
@@ -145,7 +124,7 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
             <div>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-semibold text-chrome-700">Pre-mint (not yet issued)</span>
-                <span className="text-xs text-chrome-500">{premintAmount.toLocaleString('en-CA')}</span>
+                <span className="text-xs text-chrome-500">{premintAmount.toLocaleString(locale)}</span>
               </div>
               <div className="h-1.5 bg-chrome-100 rounded-full overflow-hidden">
                 <div
@@ -155,7 +134,7 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
               </div>
             </div>
             <p className="text-[11px] text-chrome-400 italic pt-0.5">
-              ≈ CA${onChainTotal.toLocaleString('en-CA')} potential reserve if fully issued at 1:1
+              ≈ {currencySymbol}{onChainTotal.toLocaleString(locale)} potential reserve if fully issued at 1:1
             </p>
             {meta.attestedSupplySource && (
               <p className="text-[11px] text-chrome-400 italic">{meta.attestedSupplySource}</p>
@@ -170,12 +149,12 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-semibold text-chrome-700">On {c.chain}</span>
                     <span className="text-xs text-chrome-500">
-                      {c.amount.toLocaleString('en-CA', { maximumFractionDigits: 0 })}
+                      {c.amount.toLocaleString(locale, { maximumFractionDigits: 0 })}
                     </span>
                   </div>
                   <div className="h-1.5 bg-chrome-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-red-600 rounded-full"
+                      className={`h-full ${accent.bar} rounded-full`}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -187,7 +166,7 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-chrome-700">Custodial (off-chain)</span>
                   <span className="text-xs text-chrome-500">
-                    {(meta.attestedSupply - onChainTotal).toLocaleString('en-CA', { maximumFractionDigits: 0 })}
+                    {(meta.attestedSupply - onChainTotal).toLocaleString(locale, { maximumFractionDigits: 0 })}
                   </span>
                 </div>
                 <div className="h-1.5 bg-chrome-100 rounded-full overflow-hidden">
@@ -207,7 +186,7 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
                 <span className="text-xs text-chrome-500">100%</span>
               </div>
               <div className="h-1.5 bg-chrome-100 rounded-full overflow-hidden">
-                <div className="h-full bg-red-600 rounded-full" style={{ width: '100%' }} />
+                <div className={`h-full ${accent.bar} rounded-full`} style={{ width: '100%' }} />
               </div>
             </div>
             {meta.attestedSupplySource && (
@@ -245,79 +224,5 @@ function ReserveCard({ stablecoin, chains, isLoadingSupply }: ReserveCardProps) 
         )}
       </div>
     </div>
-  );
-}
-
-export function CanadaPage() {
-  const { data: stablecoins, isLoading } = useCountryStablecoins(COUNTRY_SLUG);
-  const { data: exchanges } = useCountryExchanges(COUNTRY_SLUG);
-  const { data: reserveSupply, isLoading: isLoadingSupply } = useCountryReserves(COUNTRY_SLUG);
-
-  if (isLoading) {
-    return (
-      <PageContainer>
-        <SkeletonCanadaPage />
-      </PageContainer>
-    );
-  }
-
-  if (!stablecoins) {
-    return (
-      <PageContainer>
-        <div className="bg-white rounded-lg shadow-sm border border-chrome-200 p-8">
-          <p className="text-chrome-500 text-center">Failed to load data</p>
-        </div>
-      </PageContainer>
-    );
-  }
-
-  return (
-    <PageContainer>
-      {/* Hero Section */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <h1 className="text-3xl font-bold text-chrome-800">Canada</h1>
-          <MapleLeafIcon className="w-8 h-8 text-red-600" />
-        </div>
-        <p className="text-lg text-chrome-500">
-          The Canadian Stablecoin Issuer Landscape
-        </p>
-      </div>
-
-      {/* Company Profile Cards */}
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-chrome-800 mb-4">
-          Leading Canadian Stablecoin Issuers
-        </h2>
-        <CompanyProfileCards stablecoins={stablecoins} />
-      </section>
-
-      {/* Reserve & Transparency */}
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-chrome-800 mb-4">
-          Reserve & Transparency
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {stablecoins.map((stablecoin) => (
-            <ReserveCard
-              key={stablecoin.id}
-              stablecoin={stablecoin}
-              chains={reserveSupply?.[stablecoin.id] ?? null}
-              isLoadingSupply={isLoadingSupply}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="mb-8">
-        <ComparisonTable stablecoins={stablecoins} exchanges={exchanges || []} />
-      </section>
-
-      {/* Company Timelines */}
-      <section>
-        <CompanyTimelines stablecoins={stablecoins} />
-      </section>
-    </PageContainer>
   );
 }

@@ -1,11 +1,13 @@
-import type { CanadianStablecoin, Exchange } from '../../api';
+import type { CountryStablecoin, Exchange } from '../../api';
 
 interface ComparisonTableProps {
-  stablecoins: CanadianStablecoin[];
+  /** Table heading, e.g. "Canadian Stablecoins - Across the Board" */
+  heading: string;
+  stablecoins: CountryStablecoin[];
   exchanges: Exchange[];
 }
 
-function StatusCell({ status }: { status: CanadianStablecoin['status'] }) {
+function StatusCell({ status }: { status: CountryStablecoin['status'] }) {
   if (status === 'live') {
     return (
       <span className="inline-flex items-center gap-1.5 text-status-positive font-medium">
@@ -22,7 +24,7 @@ function StatusCell({ status }: { status: CanadianStablecoin['status'] }) {
   );
 }
 
-export function ComparisonTable({ stablecoins, exchanges }: ComparisonTableProps) {
+export function ComparisonTable({ heading, stablecoins, exchanges }: ComparisonTableProps) {
   // Helper to get exchanges for a stablecoin
   const getExchangesForStablecoin = (stablecoinId: string) => {
     return exchanges.filter((e) => e.stablecoins.includes(stablecoinId));
@@ -52,7 +54,7 @@ export function ComparisonTable({ stablecoins, exchanges }: ComparisonTableProps
   return (
     <div className="bg-white rounded-xl shadow-sm border border-chrome-200 overflow-hidden">
       <div className="px-6 py-4 border-b border-chrome-100">
-        <h2 className="text-lg font-semibold text-chrome-900">Canadian Stablecoins - Across the Board</h2>
+        <h2 className="text-lg font-semibold text-chrome-900">{heading}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">

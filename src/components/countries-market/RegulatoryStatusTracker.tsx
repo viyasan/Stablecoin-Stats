@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import type { CanadianStablecoin, RegulatoryStep } from '../../api';
+import type { CountryStablecoin, RegulatoryStep } from '../../api';
 
 interface TooltipProps {
   content: string;
@@ -96,7 +96,7 @@ function ProgressStep({ step, isLast }: ProgressStepProps) {
 }
 
 interface StablecoinTrackerProps {
-  stablecoin: CanadianStablecoin;
+  stablecoin: CountryStablecoin;
 }
 
 function StablecoinTracker({ stablecoin }: StablecoinTrackerProps) {
@@ -137,7 +137,7 @@ function StablecoinTracker({ stablecoin }: StablecoinTrackerProps) {
 }
 
 interface RegulatoryStatusTrackerProps {
-  stablecoins: CanadianStablecoin[];
+  stablecoins: CountryStablecoin[];
 }
 
 export function RegulatoryStatusTracker({ stablecoins }: RegulatoryStatusTrackerProps) {

@@ -89,8 +89,8 @@ export interface CountryStablecoin {
   audits: string;
   volume?: string;
   exchangePartners: number;
-  parentCompany: ParentCompany;
-  companyTimeline: CompanyTimelineEvent[];
+  parentCompany?: ParentCompany;
+  companyTimeline?: CompanyTimelineEvent[];
   reserveMetadata: ReserveMetadata;
 }
 
@@ -142,12 +142,27 @@ export interface CountryMeta {
   /** URL slug, e.g. "canada" -> /countries/canada */
   slug: string;
   name: string;
+  /** Adjective used in section headings, e.g. "Canadian" */
+  demonym: string;
+  /** One-line page subtitle */
+  tagline: string;
   /** Intl locale for number formatting, e.g. "en-CA" */
   locale: string;
   /** Currency the local stablecoins are pegged to, e.g. "CAD" */
   currency: string;
+  /** Prefix for currency amounts in copy, e.g. "CA$" */
+  currencySymbol: string;
   /** Matching id in regulationMapData.ts, for deep-linking to /regulation/:code */
   regulationCode: string;
+  /** Country accent used by issuer cards and supply bars */
+  accent: CountryAccent;
+}
+
+export interface CountryAccent {
+  /** Tailwind gradient classes for the issuer card header */
+  gradient: string;
+  /** Tailwind background class for supply bars */
+  bar: string;
 }
 
 export interface CountryDataset {
@@ -157,6 +172,29 @@ export interface CountryDataset {
   timelineEvents: TimelineEvent[];
   /** Per-stablecoin live supply config, keyed by stablecoin id. */
   supplySources?: Record<string, SupplySource>;
+  /** Optional per-stablecoin gradient overrides, keyed by stablecoin id. */
+  cardGradients?: Record<string, string>;
+  /**
+   * Stablecoins worth naming that are not in the main list, grouped by category.
+   * Used where the headline list would otherwise mislead — e.g. the US page, where
+   * the largest dollar stablecoin is not US-issued.
+   */
+  honourableMentions?: HonourableMentionGroup[];
+}
+
+export interface HonourableMentionGroup {
+  category: string;
+  blurb?: string;
+  entries: HonourableMention[];
+}
+
+export interface HonourableMention {
+  symbol: string;
+  name: string;
+  issuer: string;
+  /** Free-form supply label, e.g. "$184.04B" */
+  supply?: string;
+  note?: string;
 }
 
 /**

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import TagManager from 'react-gtm-module';
 import NProgress from 'nprogress';
 import { MainLayout } from './components/layout';
 import {
   OverviewPage,
   MarketPage,
-  CanadaPage,
+  CountryMarketPage,
   CountriesPage,
   CountryDetailPage,
   NewsPage,
@@ -60,17 +60,6 @@ function PageViewTracker() {
   return null;
 }
 
-/**
- * The regulation tracker used to live at /countries/:code. Those URLs now belong to
- * the Countries section, so any code the new section does not yet claim is sent on to
- * its regulation page. Explicit /countries/<slug> routes are declared above this one
- * and win, so each country page added later takes over its own path.
- */
-function LegacyRegulationRedirect() {
-  const { code } = useParams();
-  return <Navigate to={`/regulation/${code}`} replace />;
-}
-
 function App() {
   return (
     <BrowserRouter>
@@ -85,10 +74,10 @@ function App() {
           <Route path="/regulation" element={<CountriesPage />} />
           <Route path="/regulation/:code" element={<CountryDetailPage />} />
 
-          {/* Countries section — issuer and market deep-dives, one page per country */}
+          {/* Countries section — issuer and market deep-dives, one page per country.
+              A slug with no dataset forwards to its regulation page; see CountryMarketPage. */}
           <Route path="/countries" element={<Navigate to="/countries/canada" replace />} />
-          <Route path="/countries/canada" element={<CanadaPage />} />
-          <Route path="/countries/:code" element={<LegacyRegulationRedirect />} />
+          <Route path="/countries/:slug" element={<CountryMarketPage />} />
 
           {/* Legacy */}
           <Route path="/canada" element={<Navigate to="/countries/canada" replace />} />

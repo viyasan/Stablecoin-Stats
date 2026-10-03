@@ -1,11 +1,11 @@
-import type { CanadianStablecoin } from '../../api';
+import type { CountryStablecoin } from '../../api';
 
 interface CompanyCardProps {
-  stablecoin: CanadianStablecoin;
+  stablecoin: CountryStablecoin;
 }
 
 function CompanyCard({ stablecoin }: CompanyCardProps) {
-  const { parentCompany } = stablecoin;
+  const parentCompany = stablecoin.parentCompany!;
 
   // Get blockchain-specific colors
   const getBlockchainColors = (chain: string) => {
@@ -163,13 +163,17 @@ function CompanyCard({ stablecoin }: CompanyCardProps) {
 }
 
 interface CompanyProfileCardsProps {
-  stablecoins: CanadianStablecoin[];
+  stablecoins: CountryStablecoin[];
 }
 
 export function CompanyProfileCards({ stablecoins }: CompanyProfileCardsProps) {
+  // parentCompany is optional — lighter country datasets omit it entirely.
+  const withProfiles = stablecoins.filter((s) => s.parentCompany);
+  if (withProfiles.length === 0) return null;
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      {stablecoins.map((stablecoin) => (
+      {withProfiles.map((stablecoin) => (
         <CompanyCard key={stablecoin.id} stablecoin={stablecoin} />
       ))}
     </div>

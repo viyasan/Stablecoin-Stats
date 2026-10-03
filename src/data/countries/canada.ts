@@ -851,16 +851,32 @@ export const canadaSupplySources: CountryDataset["supplySources"] = {
   },
 };
 
+/** Per-issuer header gradients, preserved from the original Canada page. */
+const canadaCardGradients: Record<string, string> = {
+  cadx: "from-[#dc2626] to-[#b91c1c]",
+  cadc: "from-[#d92525] to-[#b61b1b]",
+  qcad: "from-[#dc2626] to-[#b91c1c]",
+  tetra: "from-[#d52424] to-[#b21a1a]",
+};
+
 export const canada: CountryDataset = {
   meta: {
     slug: "canada",
     name: "Canada",
+    demonym: "Canadian",
+    tagline: "The Canadian Stablecoin Issuer Landscape",
     locale: "en-CA",
     currency: "CAD",
+    currencySymbol: "CA$",
     regulationCode: "ca",
+    accent: {
+      gradient: "from-[#dc2626] to-[#b91c1c]",
+      bar: "bg-red-600",
+    },
   },
   stablecoins: canadianStablecoins,
   exchanges,
   timelineEvents,
   supplySources: canadaSupplySources,
+  cardGradients: canadaCardGradients,
 };

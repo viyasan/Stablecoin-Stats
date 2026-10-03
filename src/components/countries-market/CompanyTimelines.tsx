@@ -1,4 +1,4 @@
-import type { CanadianStablecoin, CompanyTimelineEvent } from '../../api';
+import type { CountryStablecoin, CompanyTimelineEvent } from '../../api';
 
 interface TimelineEventItemProps {
   event: CompanyTimelineEvent;
@@ -52,7 +52,7 @@ function TimelineEventItem({ event, isLast }: TimelineEventItemProps) {
 }
 
 interface CompanyTimelineColumnProps {
-  stablecoin: CanadianStablecoin;
+  stablecoin: CountryStablecoin;
 }
 
 function CompanyTimelineColumn({ stablecoin }: CompanyTimelineColumnProps) {
@@ -85,17 +85,17 @@ function CompanyTimelineColumn({ stablecoin }: CompanyTimelineColumnProps) {
         )}
         <div className="min-w-0">
           <h3 className="text-lg font-bold text-white">{stablecoin.name}</h3>
-          <p className="text-white text-sm opacity-90 truncate">{stablecoin.parentCompany.name}</p>
+          <p className="text-white text-sm opacity-90 truncate">{stablecoin.parentCompany?.name ?? stablecoin.issuer}</p>
         </div>
       </div>
 
       {/* Timeline Events */}
       <div className="p-5">
-        {stablecoin.companyTimeline.map((event, index) => (
+        {(stablecoin.companyTimeline ?? []).map((event, index) => (
           <TimelineEventItem
             key={`${event.date}-${event.title}`}
             event={event}
-            isLast={index === stablecoin.companyTimeline.length - 1}
+            isLast={index === (stablecoin.companyTimeline?.length ?? 0) - 1}
           />
         ))}
       </div>
@@ -104,16 +104,22 @@ function CompanyTimelineColumn({ stablecoin }: CompanyTimelineColumnProps) {
 }
 
 interface CompanyTimelinesProps {
-  stablecoins: CanadianStablecoin[];
+  stablecoins: CountryStablecoin[];
+  /** Adjective for the subtitle, e.g. "Canadian" */
+  demonym: string;
 }
 
-export function CompanyTimelines({ stablecoins }: CompanyTimelinesProps) {
+export function CompanyTimelines({ stablecoins, demonym }: CompanyTimelinesProps) {
+  // companyTimeline is optional — lighter country datasets omit it entirely.
+  const withTimelines = stablecoins.filter((s) => s.companyTimeline?.length);
+  if (withTimelines.length === 0) return null;
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-chrome-200 p-6">
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-chrome-900">Company Timelines</h2>
         <p className="text-sm text-chrome-500 mt-1">
-          Key milestones and events for each Canadian stablecoin issuer
+          Key milestones and events for each {demonym} stablecoin issuer
         </p>
       </div>
 
@@ -143,7 +149,7 @@ export function CompanyTimelines({ stablecoins }: CompanyTimelinesProps) {
 
       {/* Four Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {stablecoins.map((stablecoin) => (
+        {withTimelines.map((stablecoin) => (
           <CompanyTimelineColumn key={stablecoin.id} stablecoin={stablecoin} />
         ))}
       </div>
