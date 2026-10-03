@@ -195,7 +195,7 @@ export function ReserveCompositionCard() {
             </strong>
             {' — '}
             {selectedCoin === 'USDT'
-              ? `Tether holds ${treasuryAmount} in Treasuries, ranking #17 globally`
+              ? `Tether holds ${treasuryAmount} in Treasuries, ranking #18 globally`
               : `Circle holds ${treasuryAmount} in Treasuries, managed by BlackRock`}
           </p>
           </div>

@@ -455,9 +455,9 @@ const RESERVE_DATA = {
   },
   USDC: {
     name: 'Circle',
-    lastUpdated: 'June 2026',
+    lastUpdated: 'Sept 2026',
     sourceUrl: 'https://www.circle.com/transparency',
-    treasuryHoldings: 67_670_000_000, // $67.67B AUM in Circle Reserve Fund (USDXX) per BlackRock as of June 2026
+    treasuryHoldings: 62_470_000_000, // $62.47B fund size of Circle Reserve Fund (USDXX) per BlackRock as of Sept 30, 2026
     assets: [
       { name: 'US Treasuries & Repos', percentage: 80, color: '#D4A437' },
       { name: 'Cash & Bank Deposits', percentage: 20, color: '#CD7F32' },
