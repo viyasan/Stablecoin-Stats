@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalKpiCard } from './GlobalKpiCard';
+import { Marquee } from '@/components/ui/marquee';
+import { RotatingWords } from '@/components/ui/rotating-words';
+import { ShimmerLink } from '@/components/ui/shimmer-link';
 
 const ROTATING_NAMES = [
   'digital dollars',
@@ -32,39 +34,6 @@ const CHAINS = [
 ];
 
 export function HeroSection() {
-  const [nameIndex, setNameIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    // Hold "digital dollars" for 4s on first load, then 2s per coin
-    const firstDelay = setTimeout(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setNameIndex(1);
-        setVisible(true);
-      }, 400);
-    }, 4000);
-
-    return () => clearTimeout(firstDelay);
-  }, []);
-
-  useEffect(() => {
-    // Only start the 2s cycle after the first coin appears
-    if (nameIndex === 0) return;
-
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setNameIndex((prev) => {
-          const next = prev + 1;
-          return next >= ROTATING_NAMES.length ? 1 : next;
-        });
-        setVisible(true);
-      }, 400);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [nameIndex > 0]);
-
   return (
     <section className="relative rounded-2xl bg-white border border-chrome-200 mb-8">
       {/* ── Background decorations ── */}
@@ -86,11 +55,15 @@ export function HeroSection() {
             Tracking
             <br />
             <span className="inline-block h-[1.2em]">
-              <em
-                className="text-gold-500 inline-block transition-opacity duration-400"
-                style={{ opacity: visible ? 1 : 0 }}
-              >
-                {ROTATING_NAMES[nameIndex]}
+              {/* Hold "digital dollars" for 4s on first load, then 2s per coin */}
+              <em>
+                <RotatingWords
+                  words={ROTATING_NAMES}
+                  initialHoldMs={4000}
+                  intervalMs={2000}
+                  loopFirstWord={false}
+                  className="text-gold-500"
+                />
               </em>
             </span>
             <br />
@@ -105,12 +78,7 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            <Link
-              to="/stats"
-              className="inline-flex items-center px-6 py-3 bg-gold-500 text-white text-sm font-medium rounded-md hover:bg-gold-600 transition-colors"
-            >
-              Explore Stats
-            </Link>
+            <ShimmerLink to="/stats">Explore Stats</ShimmerLink>
             <Link
               to="/yields"
               className="inline-flex items-center px-6 py-3 border border-gold-500 text-gold-600 text-sm font-medium rounded-md hover:bg-gold-50 transition-colors"
@@ -127,17 +95,17 @@ export function HeroSection() {
       </div>
 
       {/* ── Bottom strip ── */}
-      <div className="relative z-10 border-t border-chrome-200 px-5 sm:px-8 lg:px-12 py-3 sm:py-4 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <div className="relative z-10 border-t border-chrome-200 py-2 sm:py-3 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <Marquee pauseOnHover repeat={4} className="[--gap:1.25rem]">
           {CHAINS.map((chain) => (
             <span
               key={chain}
-              className="font-mono text-[11px] text-chrome-400 tracking-wide"
+              className="font-mono text-[11px] text-chrome-400 tracking-wide whitespace-nowrap"
             >
               {chain}
             </span>
           ))}
-        </div>
+        </Marquee>
       </div>
     </section>
   );
