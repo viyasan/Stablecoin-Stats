@@ -34,6 +34,21 @@
   --color-status-warning: #D4A437;
   --color-status-neutral: #6C757D;
 
+  /* shadcn / Watermelon UI semantic tokens, mapped onto the palette above */
+  --color-background: #FFFFFF;
+  --color-foreground: var(--color-chrome-900);
+  --color-card: #FFFFFF;
+  --color-card-foreground: var(--color-chrome-900);
+  --color-muted: var(--color-chrome-50);
+  --color-muted-foreground: var(--color-chrome-500);
+  --color-border: var(--color-chrome-200);
+  --color-input: var(--color-chrome-200);
+  --color-ring: var(--color-gold-400);
+  --color-primary: var(--color-gold-500);
+  --color-primary-foreground: #FFFFFF;
+  --color-accent: var(--color-gold-50);
+  --color-accent-foreground: var(--color-gold-600);
+
   /* Font families */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
