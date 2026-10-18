@@ -2,12 +2,7 @@ import { useEffect } from 'react';
 import { PageContainer } from '../components/layout';
 import { FadeInSlide } from '../components/common';
 import { prefetchNews } from '../api';
-import {
-  HeroSection,
-  QuickInsightsCarousel,
-  TopHeadlinesList,
-  WordDefinitionCard,
-} from '../components/overview';
+import { HeroSection, TopHeadlinesList } from '../components/overview';
 
 export function OverviewPage() {
   // Kick off news fetch immediately on page mount so it's ready by the time
@@ -22,18 +17,6 @@ export function OverviewPage() {
       <FadeInSlide>
         <HeroSection />
       </FadeInSlide>
-
-      {/* Word Definition + Quick Insights */}
-      <section className="mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <FadeInSlide delay={0}>
-            <WordDefinitionCard />
-          </FadeInSlide>
-          <FadeInSlide delay={150} className="h-full">
-            <QuickInsightsCarousel />
-          </FadeInSlide>
-        </div>
-      </section>
 
       {/* Top Headlines Section */}
       <section>
