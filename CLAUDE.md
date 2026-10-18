@@ -76,7 +76,7 @@ Hooks live in `src/api/` and are re-exported from `src/api/index.ts`.
 | Tether/Circle Attestations | `marketApi.ts` RESERVE_DATA, `TreasuryHoldingsCard.tsx` | Static — Treasury holdings: Tether $141B (Q1 2026 BDO), Circle $62.47B (Circle Reserve Fund, Sept 30, 2026) |
 | Country stablecoin registry | `src/data/countries/` (`canada.ts`, `us.ts`, `uk.ts`, `mexico.ts`) | Static — issuer profiles, timelines, attested supply (Oct 2026) |
 | Global regulation | `src/components/countries/regulationMapData.ts` | Static — 11 jurisdictions, `lastVerified` per entry (Oct 2026) |
-| Quick Insights / Insights | `QuickInsightsCarousel.tsx`, `news/InsightsSection.tsx` | Static — homepage insights (Oct 2026), curated reports (Feb 2026) |
+| Insights | `news/InsightsSection.tsx` | Static — curated reports (Feb 2026) |
 
 Static data needs manual updates. Sources and dates are documented in comments and card attribution links.
 
